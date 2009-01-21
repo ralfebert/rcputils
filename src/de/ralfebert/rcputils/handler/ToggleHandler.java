@@ -26,6 +26,10 @@ import org.eclipse.ui.menus.UIElement;
  * The id="STYLE" was chosen because of IMenuStateIds.STYLE - maybe this will
  * work without any Handler foo in later Eclipse versions.
  * 
+ * See
+ * http://www.ralfebert.de/eclipse/2009_01_21_togglehandler/
+ * http://eclipsesource.com/blogs/2009/01/15/toggling-a-command-contribution/
+ * 
  * @author Ralf Ebert
  */
 public abstract class ToggleHandler extends AbstractHandler implements IElementUpdater {
@@ -50,7 +54,7 @@ public abstract class ToggleHandler extends AbstractHandler implements IElementU
 		return null;
 	}
 
-	protected abstract void executeToggle(ExecutionEvent event, boolean newState);
+	protected abstract void executeToggle(ExecutionEvent event, boolean checked);
 
 	@SuppressWarnings("unchecked")
 	public void updateElement(UIElement element, Map parameters) {
