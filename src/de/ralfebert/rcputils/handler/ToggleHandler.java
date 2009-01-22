@@ -18,16 +18,15 @@ import org.eclipse.ui.menus.UIElement;
  * declare a state for your command to use ToggleHandler:
  * 
  * <pre>
- * <command id="somecommand" name="SomeCommand">
- * 	 <state class="org.eclipse.jface.commands.ToggleState" id="STYLE"/>
- * </command>
+ * &lt;command id=&quot;somecommand&quot; name=&quot;SomeCommand&quot;&gt;
+ * 	 &lt;state class=&quot;org.eclipse.jface.commands.ToggleState&quot; id=&quot;STYLE&quot;/&gt;
+ * &lt;/command&gt;
  * </pre>
  * 
  * The id="STYLE" was chosen because of IMenuStateIds.STYLE - maybe this will
  * work without any Handler foo in later Eclipse versions.
  * 
- * See
- * http://www.ralfebert.de/eclipse/2009_01_21_togglehandler/
+ * See http://www.ralfebert.de/eclipse/2009_01_21_togglehandler/
  * http://eclipsesource.com/blogs/2009/01/15/toggling-a-command-contribution/
  * 
  * @author Ralf Ebert
@@ -37,9 +36,11 @@ public abstract class ToggleHandler extends AbstractHandler implements IElementU
 	private String commandId;
 
 	public final Object execute(ExecutionEvent event) throws ExecutionException {
-		ICommandService commandService = (ICommandService) PlatformUI.getWorkbench().getService(ICommandService.class);
+		ICommandService commandService = (ICommandService) PlatformUI.getWorkbench().getService(
+				ICommandService.class);
 		this.commandId = event.getCommand().getId();
 
+		// update toggled state
 		State state = event.getCommand().getState(IMenuStateIds.STYLE);
 		if (state == null)
 			throw new ExecutionException(
@@ -47,6 +48,8 @@ public abstract class ToggleHandler extends AbstractHandler implements IElementU
 		boolean currentState = (Boolean) state.getValue();
 		boolean newState = !currentState;
 		state.setValue(newState);
+
+		// trigger element update
 		executeToggle(event, newState);
 		commandService.refreshElements(event.getCommand().getId(), null);
 
@@ -56,13 +59,18 @@ public abstract class ToggleHandler extends AbstractHandler implements IElementU
 
 	protected abstract void executeToggle(ExecutionEvent event, boolean checked);
 
+	/**
+	 * Update command element with toggle state
+	 */
 	@SuppressWarnings("unchecked")
 	public void updateElement(UIElement element, Map parameters) {
 		if (this.commandId != null) {
-			ICommandService commandService = (ICommandService) PlatformUI.getWorkbench().getService(
-					ICommandService.class);
+			ICommandService commandService = (ICommandService) PlatformUI.getWorkbench()
+					.getService(ICommandService.class);
 			Command command = commandService.getCommand(commandId);
-			element.setChecked((Boolean) command.getState(IMenuStateIds.STYLE).getValue());
+			State state = command.getState(IMenuStateIds.STYLE);
+			if (state != null)
+				element.setChecked((Boolean) state.getValue());
 		}
 	}
 
