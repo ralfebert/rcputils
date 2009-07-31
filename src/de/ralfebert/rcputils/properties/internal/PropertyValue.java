@@ -6,6 +6,8 @@ import java.util.List;
 
 import org.eclipse.core.internal.databinding.beans.BeanPropertyHelper;
 
+import de.ralfebert.rcputils.properties.IValue;
+
 /**
  * This class allows to use JFace Data Binding properties to get and set nested
  * property values without observing them.
@@ -17,11 +19,11 @@ import org.eclipse.core.internal.databinding.beans.BeanPropertyHelper;
  * @author Ralf Ebert <info@ralfebert.de>
  */
 @SuppressWarnings("restriction")
-public class PropertyAccess {
+public class PropertyValue implements IValue {
 
 	private final Object[] properties;
 
-	public PropertyAccess(String propertyName) {
+	public PropertyValue(String propertyName) {
 		properties = split(propertyName);
 
 	}

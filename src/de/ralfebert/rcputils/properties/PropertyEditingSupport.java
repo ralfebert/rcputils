@@ -4,7 +4,7 @@ import org.eclipse.jface.viewers.CellEditor;
 import org.eclipse.jface.viewers.ColumnViewer;
 import org.eclipse.jface.viewers.EditingSupport;
 
-import de.ralfebert.rcputils.properties.internal.PropertyAccess;
+import de.ralfebert.rcputils.properties.internal.PropertyValue;
 
 /**
  * EditingSupport for JFace viewers that gets and sets the value using a bean
@@ -14,18 +14,16 @@ import de.ralfebert.rcputils.properties.internal.PropertyAccess;
  */
 public class PropertyEditingSupport extends EditingSupport {
 
-	private final PropertyAccess property;
 	private final CellEditor cellEditor;
-
-	public PropertyEditingSupport(ColumnViewer viewer, String propertyName) {
-		super(viewer);
-		this.property = new PropertyAccess(propertyName);
-		this.cellEditor = null;
-	}
+	private final IValue valueHandler;
 
 	public PropertyEditingSupport(ColumnViewer viewer, String propertyName, CellEditor cellEditor) {
+		this(viewer, new PropertyValue(propertyName), cellEditor);
+	}
+
+	public PropertyEditingSupport(ColumnViewer viewer, IValue valueHandler, CellEditor cellEditor) {
 		super(viewer);
-		this.property = new PropertyAccess(propertyName);
+		this.valueHandler = valueHandler;
 		this.cellEditor = cellEditor;
 	}
 
@@ -41,12 +39,12 @@ public class PropertyEditingSupport extends EditingSupport {
 
 	@Override
 	protected Object getValue(Object element) {
-		return property.getValue(element);
+		return valueHandler.getValue(element);
 	}
 
 	@Override
 	protected void setValue(Object element, Object value) {
-		property.setValue(element, value);
+		valueHandler.setValue(element, value);
 		getViewer().refresh(element);
 	}
 
