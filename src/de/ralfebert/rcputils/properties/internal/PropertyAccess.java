@@ -7,10 +7,12 @@ import java.util.List;
 import org.eclipse.core.internal.databinding.beans.BeanPropertyHelper;
 
 /**
- * This class allows to use the JFace Data Binding properties mechanism to get
- * and set nested property values without observing them.
+ * This class allows to use JFace Data Binding properties to get and set nested
+ * property values without observing them.
  * 
- * WARNING: This uses internal data binding classes.
+ * WARNING: This uses internal data binding classes. This enhancement described
+ * in https://bugs.eclipse.org/bugs/show_bug.cgi?id=285307 would allow to use
+ * official API instead of this class.
  * 
  * @author Ralf Ebert <info@ralfebert.de>
  */
