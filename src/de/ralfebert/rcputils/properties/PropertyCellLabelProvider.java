@@ -11,7 +11,7 @@ import de.ralfebert.rcputils.properties.internal.PropertyAccess;
  * 
  * @author Ralf Ebert <info@ralfebert.de>
  */
-public class PropertyCellLabelProvider extends CellLabelProvider {
+public class PropertyCellLabelProvider extends CellLabelProvider implements ICellValueProvider {
 
 	private final PropertyAccess property;
 
@@ -21,7 +21,11 @@ public class PropertyCellLabelProvider extends CellLabelProvider {
 
 	@Override
 	public void update(ViewerCell cell) {
-		cell.setText(String.valueOf(property.getValue(cell.getElement())));
+		cell.setText(String.valueOf(getValue(cell.getElement())));
+	}
+
+	public Object getValue(Object element) {
+		return property.getValue(element);
 	}
 
 }
