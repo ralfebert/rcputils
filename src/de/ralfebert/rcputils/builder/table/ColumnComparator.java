@@ -1,4 +1,4 @@
-package de.ralfebert.rcputils.tablebuilder;
+package de.ralfebert.rcputils.builder.table;
 
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.viewers.ViewerComparator;
