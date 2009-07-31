@@ -1,5 +1,7 @@
 package de.ralfebert.rcputils.tablebuilder;
 
+import java.text.Format;
+
 import org.eclipse.jface.viewers.CellLabelProvider;
 import org.eclipse.jface.viewers.ColumnPixelData;
 import org.eclipse.jface.viewers.ColumnWeightData;
@@ -7,6 +9,7 @@ import org.eclipse.jface.viewers.TableViewerColumn;
 import org.eclipse.jface.viewers.TextCellEditor;
 import org.eclipse.swt.SWT;
 
+import de.ralfebert.rcputils.properties.IReadableValue;
 import de.ralfebert.rcputils.properties.IValue;
 import de.ralfebert.rcputils.properties.PropertyCellLabelProvider;
 import de.ralfebert.rcputils.properties.PropertyEditingSupport;
@@ -19,11 +22,12 @@ public class ColumnBuilder {
 	private Integer widthPixel;
 	private Integer widthPercent;
 	private boolean editable = false;
-	private ICellFormatter valueFormatter;
+	private ICellFormatter cellFormatter;
 	private CellLabelProvider customLabelProvider;
 	private IValue valueHandler;
+	private IReadableValue valueFormatter;
 	private int align = SWT.LEFT;
-	private IValue sortBy;
+	private IReadableValue sortBy;
 	private boolean defaultSort;
 
 	ColumnBuilder(TableViewerBuilder builder, String label) {
@@ -40,8 +44,23 @@ public class ColumnBuilder {
 		return this;
 	}
 
-	public ColumnBuilder format(ICellFormatter valueFormatter) {
+	public ColumnBuilder format(ICellFormatter cellFormatter) {
+		this.cellFormatter = cellFormatter;
+		return this;
+	}
+
+	public ColumnBuilder format(IReadableValue valueFormatter) {
 		this.valueFormatter = valueFormatter;
+		return this;
+	}
+
+	public ColumnBuilder format(final Format format) {
+		this.valueFormatter = new IReadableValue() {
+
+			public Object getValue(Object element) {
+				return format.format(element);
+			}
+		};
 		return this;
 	}
 
@@ -70,7 +89,7 @@ public class ColumnBuilder {
 		return this;
 	}
 
-	public ColumnBuilder sortBy(IValue sortBy) {
+	public ColumnBuilder sortBy(IReadableValue sortBy) {
 		this.sortBy = sortBy;
 		return this;
 	}
@@ -90,12 +109,12 @@ public class ColumnBuilder {
 		viewerColumn.getColumn().setText(label);
 
 		if (customLabelProvider != null) {
-			if (valueHandler != null || valueFormatter != null)
+			if (cellFormatter != null)
 				throw new RuntimeException(
 						"If you specify a custom label provider, it is not allowed to specify a cell formatter - you need to do the formatting in your labelprovider!");
 			viewerColumn.setLabelProvider(customLabelProvider);
 		} else {
-			viewerColumn.setLabelProvider(new PropertyCellLabelProvider(valueHandler, valueFormatter));
+			viewerColumn.setLabelProvider(new PropertyCellLabelProvider(valueHandler, valueFormatter, cellFormatter));
 		}
 
 		if (sortBy == null) {

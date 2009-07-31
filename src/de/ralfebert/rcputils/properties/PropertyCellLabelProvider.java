@@ -14,28 +14,34 @@ import de.ralfebert.rcputils.tablebuilder.ICellFormatter;
  */
 public class PropertyCellLabelProvider extends CellLabelProvider {
 
-	private final IValue valueHandler;
-	private final ICellFormatter valueFormatter;
+	private final IReadableValue valueHandler;
+	private IReadableValue valueFormatter;
+	private final ICellFormatter cellFormatter;
 
 	public PropertyCellLabelProvider(String propertyName) {
 		this.valueHandler = new PropertyValue(propertyName);
-		this.valueFormatter = null;
+		this.cellFormatter = null;
 	}
 
-	public PropertyCellLabelProvider(IValue valueHandler, ICellFormatter valueFormatter) {
+	public PropertyCellLabelProvider(IReadableValue valueHandler, IReadableValue valueFormatter, ICellFormatter cellFormatter) {
 		this.valueHandler = valueHandler;
 		this.valueFormatter = valueFormatter;
+		this.cellFormatter = cellFormatter;
 	}
 
 	@Override
 	public void update(ViewerCell cell) {
-		Object value = null;
+		Object rawValue = null;
 		if (valueHandler != null) {
-			value = valueHandler.getValue(cell.getElement());
-			cell.setText(String.valueOf(value));
+			rawValue = valueHandler.getValue(cell.getElement());
+			Object formattedValue = rawValue;
+			if (valueFormatter != null) {
+				formattedValue = valueFormatter.getValue(rawValue);
+			}
+			cell.setText(String.valueOf(formattedValue));
 		}
-		if (valueFormatter != null) {
-			valueFormatter.formatCell(cell, value);
+		if (cellFormatter != null) {
+			cellFormatter.formatCell(cell, rawValue);
 		}
 	}
 

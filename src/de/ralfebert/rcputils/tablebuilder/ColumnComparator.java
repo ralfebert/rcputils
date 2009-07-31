@@ -6,7 +6,7 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableColumn;
 
-import de.ralfebert.rcputils.properties.IValue;
+import de.ralfebert.rcputils.properties.IReadableValue;
 
 public final class ColumnComparator extends ViewerComparator {
 
@@ -27,7 +27,7 @@ public final class ColumnComparator extends ViewerComparator {
 		if (column == null)
 			return super.compare(viewer, e1, e2);
 
-		IValue sortBy = (IValue) column.getData(SORT_BY);
+		IReadableValue sortBy = (IReadableValue) column.getData(SORT_BY);
 
 		if (sortBy == null)
 			return super.compare(viewer, e1, e2);

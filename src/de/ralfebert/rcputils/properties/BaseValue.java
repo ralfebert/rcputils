@@ -15,6 +15,6 @@ public abstract class BaseValue<T> implements IValue {
 	public abstract Object get(T element);
 
 	public Object set(T element, Object value) {
-		throw new UnsupportedOperationException("Overwrite set() in BaseValueHandler to set values!");
+		throw new UnsupportedOperationException("Overwrite BaseValue.set() to set values!");
 	}
 }
