@@ -78,7 +78,7 @@ public class ColumnBuilder {
 	}
 
 	public ColumnBuilder makeEditable() {
-		return makeEditable(new TextCellEditor(builder.getTable()));
+		return makeEditable(new TextCellEditor(builder.getTable()), StringValueFormatter.INSTANCE);
 	}
 
 	public ColumnBuilder makeEditable(IValueFormatter valueFormatter) {
@@ -151,12 +151,6 @@ public class ColumnBuilder {
 				throw new RuntimeException(
 						"To use makeEditable() you need to specifiy a value provider or bind the column to a property!");
 			}
-
-			if (editorFormat == null)
-				editorFormat = valueFormatter;
-
-			if (editorFormat == null)
-				editorFormat = StringValueFormatter.INSTANCE;
 
 			viewerColumn.setEditingSupport(new PropertyEditingSupport(builder.getTableViewer(), valueHandler,
 					editorFormat, editor));
