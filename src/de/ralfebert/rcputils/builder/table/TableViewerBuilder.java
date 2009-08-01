@@ -15,7 +15,6 @@ import org.eclipse.swt.widgets.TableColumn;
 import de.ralfebert.rcputils.builder.table.sorting.ColumnComparator;
 import de.ralfebert.rcputils.builder.table.sorting.ColumnSortSelectionListener;
 
-
 public class TableViewerBuilder {
 
 	private final TableViewer tableViewer;
@@ -41,11 +40,11 @@ public class TableViewerBuilder {
 		this(new TableViewer(parent, SWT.MULTI | SWT.H_SCROLL | SWT.V_SCROLL | SWT.BORDER | SWT.FULL_SELECTION));
 	}
 
-	TableViewer getTableViewer() {
+	public TableViewer getTableViewer() {
 		return tableViewer;
 	}
 
-	Table getTable() {
+	public Table getTable() {
 		return table;
 	}
 
