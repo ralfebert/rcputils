@@ -5,6 +5,11 @@ import java.text.ParseException;
 
 import de.ralfebert.rcputils.properties.IValueFormatter;
 
+/**
+ * ValueFormatter for String.valueOf / java.text.Format.
+ * 
+ * @author Ralf Ebert <info@ralfebert.de>
+ */
 public class StringValueFormatter implements IValueFormatter<Object, String> {
 
 	public static final StringValueFormatter INSTANCE = new StringValueFormatter();

@@ -13,6 +13,13 @@ import org.eclipse.core.databinding.observable.list.ListChangeEvent;
 import org.eclipse.core.databinding.observable.list.ListDiffVisitor;
 import org.eclipse.core.runtime.Assert;
 
+/**
+ * ChangeTracker allows to observe all model or target observables in a
+ * DataBindingContext. Can be used to set the dirty flag of an editor when
+ * something changes.
+ * 
+ * @author Ralf Ebert <info@ralfebert.de>
+ */
 public class ChangeTracker {
 
 	private final LinkedHashSet<IChangeListener> changeListeners = new LinkedHashSet<IChangeListener>();

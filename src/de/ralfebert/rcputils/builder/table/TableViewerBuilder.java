@@ -15,6 +15,13 @@ import org.eclipse.swt.widgets.TableColumn;
 import de.ralfebert.rcputils.builder.table.sorting.ColumnComparator;
 import de.ralfebert.rcputils.builder.table.sorting.ColumnSortSelectionListener;
 
+/**
+ * A convenient builder class for creating TableViewers with support for nested
+ * properties, sorting and editing.
+ * 
+ * @author Ralf Ebert <info@ralfebert.de>
+ * @see http://www.ralfebert.de/blog/eclipsercp/tableviewerbuilder/
+ */
 public class TableViewerBuilder {
 
 	private final TableViewer tableViewer;

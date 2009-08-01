@@ -1,16 +1,24 @@
 package de.ralfebert.rcputils.builder.table.format;
 
 import java.text.DateFormat;
-import java.text.DecimalFormat;
+import java.text.NumberFormat;
 
 import org.eclipse.core.databinding.conversion.IConverter;
 
 import de.ralfebert.rcputils.properties.IValueFormatter;
 
+/**
+ * Factory for default value formatters for commonly-used types.
+ * 
+ * @author Ralf Ebert <info@ralfebert.de>
+ */
 public class Formatter {
 
-	public static StringValueFormatter forDouble(DecimalFormat decimalFormat) {
-		return new StringValueFormatter(decimalFormat) {
+	/**
+	 * Returns a formatter for String to double/Double by NumberFormat
+	 */
+	public static StringValueFormatter forDouble(NumberFormat numberFormat) {
+		return new StringValueFormatter(numberFormat) {
 			@Override
 			public Object parse(String str) {
 				return ((Number) super.parse(str)).doubleValue();
@@ -18,8 +26,11 @@ public class Formatter {
 		};
 	}
 
-	public static StringValueFormatter forLong(DecimalFormat decimalFormat) {
-		return new StringValueFormatter(decimalFormat) {
+	/**
+	 * Returns a formatter for String to long/Long by NumberFormat
+	 */
+	public static StringValueFormatter forLong(NumberFormat numberFormat) {
+		return new StringValueFormatter(numberFormat) {
 			@Override
 			public Object parse(String str) {
 				return ((Number) super.parse(str)).longValue();
@@ -27,8 +38,11 @@ public class Formatter {
 		};
 	}
 
-	public static StringValueFormatter forFloat(DecimalFormat decimalFormat) {
-		return new StringValueFormatter(decimalFormat) {
+	/**
+	 * Returns a formatter for String to float/Float by NumberFormat
+	 */
+	public static StringValueFormatter forFloat(NumberFormat numberFormat) {
+		return new StringValueFormatter(numberFormat) {
 			@Override
 			public Object parse(String str) {
 				return ((Number) super.parse(str)).floatValue();
@@ -36,15 +50,25 @@ public class Formatter {
 		};
 	}
 
-	public static StringValueFormatter forInt(DecimalFormat decimalFormat) {
-		decimalFormat.setParseIntegerOnly(true);
-		return new StringValueFormatter(decimalFormat);
+	/**
+	 * Returns a formatter for String to int/Integer by NumberFormat
+	 */
+	public static StringValueFormatter forInt(NumberFormat numberFormat) {
+		numberFormat.setParseIntegerOnly(true);
+		return new StringValueFormatter(numberFormat);
 	}
 
+	/**
+	 * Returns a formatter for String to Date by DateFormat.
+	 */
 	public static StringValueFormatter forDate(DateFormat dateFormat) {
 		return new StringValueFormatter(dateFormat);
 	}
 
+	/**
+	 * Returns a value formatter by two existing data binding IConverterts, on
+	 * for each direction.
+	 */
 	public static IValueFormatter<Object, Object> fromConverters(final IConverter format, final IConverter parse) {
 		return new IValueFormatter<Object, Object>() {
 
@@ -58,6 +82,9 @@ public class Formatter {
 		};
 	}
 
+	/**
+	 * Returns a formatter for string to int/Integer.
+	 */
 	public static IValueFormatter<Integer, String> forInt() {
 		return new IValueFormatter<Integer, String>() {
 

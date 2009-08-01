@@ -26,7 +26,7 @@ import org.eclipse.ui.menus.UIElement;
  * The id="STYLE" was chosen because of IMenuStateIds.STYLE - maybe this will
  * work without any Handler foo in later Eclipse versions.
  * 
- * See http://www.ralfebert.de/eclipse/2009_01_21_togglehandler/
+ * See http://www.ralfebert.de/blog/eclipsercp/togglehandler/
  * http://eclipsesource.com/blogs/2009/01/15/toggling-a-command-contribution/
  * 
  * @author Ralf Ebert
@@ -36,8 +36,7 @@ public abstract class ToggleHandler extends AbstractHandler implements IElementU
 	private String commandId;
 
 	public final Object execute(ExecutionEvent event) throws ExecutionException {
-		ICommandService commandService = (ICommandService) PlatformUI.getWorkbench().getService(
-				ICommandService.class);
+		ICommandService commandService = (ICommandService) PlatformUI.getWorkbench().getService(ICommandService.class);
 		this.commandId = event.getCommand().getId();
 
 		// update toggled state
@@ -65,8 +64,8 @@ public abstract class ToggleHandler extends AbstractHandler implements IElementU
 	@SuppressWarnings("unchecked")
 	public void updateElement(UIElement element, Map parameters) {
 		if (this.commandId != null) {
-			ICommandService commandService = (ICommandService) PlatformUI.getWorkbench()
-					.getService(ICommandService.class);
+			ICommandService commandService = (ICommandService) PlatformUI.getWorkbench().getService(
+					ICommandService.class);
 			Command command = commandService.getCommand(commandId);
 			State state = command.getState(IMenuStateIds.STYLE);
 			if (state != null)

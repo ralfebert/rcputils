@@ -10,6 +10,13 @@ import org.eclipse.ui.IEditorSite;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.part.EditorPart;
 
+/**
+ * DataBindingEditorPart is a base class for EditorParts that want to use
+ * DataBinding. Provides a observable for partname and has a dirty attribute
+ * that can be registered as change listener to ChangeTracker.
+ * 
+ * @author Ralf Ebert <info@ralfebert.de>
+ */
 public abstract class DataBindingEditorPart extends EditorPart {
 
 	protected final DirtyFlag dirty = new DirtyFlag();

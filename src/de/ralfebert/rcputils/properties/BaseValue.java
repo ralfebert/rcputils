@@ -1,5 +1,12 @@
 package de.ralfebert.rcputils.properties;
 
+/**
+ * Base class for IValue. This is for values you implement yourself. The generic
+ * argument T refers the type of the element this value can be used on.
+ * Implementing set is optional.
+ * 
+ * @author Ralf Ebert <info@ralfebert.de>
+ */
 public abstract class BaseValue<T> implements IValue {
 
 	@SuppressWarnings("unchecked")

@@ -7,6 +7,14 @@ import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableColumn;
 
+/**
+ * ColumnSortSelectionListener is a selection listener for {@link TableColumn}
+ * objects. When a column is selected (= header is clicked), it switches the
+ * sort direction if the column is already active sort column, otherwise it sets
+ * the active sort column.
+ * 
+ * @author Ralf Ebert <info@ralfebert.de>
+ */
 public final class ColumnSortSelectionListener extends SelectionAdapter {
 
 	private final TableViewer viewer;

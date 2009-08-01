@@ -1,11 +1,10 @@
 package de.ralfebert.rcputils.properties;
 
 import de.ralfebert.rcputils.internal.RcpUtilsPlugin;
-import de.ralfebert.rcputils.properties.internal.PropertyValue;
 
 /**
- * LabelProvider is a LabelProvider that gets labels using a bean property (can
- * be nested with ".")
+ * PropertyValueFormatter describes a conversion from a object to some property
+ * of the object.
  * 
  * @author Ralf Ebert <info@ralfebert.de>
  */
@@ -28,6 +27,6 @@ public class PropertyValueFormatter implements IValueFormatter {
 	}
 
 	public Object parse(Object obj) {
-		return obj;
+		throw new UnsupportedOperationException();
 	}
 }

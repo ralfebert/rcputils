@@ -5,11 +5,10 @@ import org.eclipse.jface.viewers.ColumnViewer;
 import org.eclipse.jface.viewers.EditingSupport;
 
 import de.ralfebert.rcputils.internal.RcpUtilsPlugin;
-import de.ralfebert.rcputils.properties.internal.PropertyValue;
 
 /**
- * EditingSupport for JFace viewers that gets and sets the value using a bean
- * property (can be nested with ".")
+ * EditingSupport for JFace viewers that gets and sets the value using a nested
+ * bean property string like "company.country.name".
  * 
  * @author Ralf Ebert <info@ralfebert.de>
  */

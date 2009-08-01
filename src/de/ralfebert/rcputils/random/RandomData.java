@@ -8,6 +8,12 @@ import org.eclipse.core.runtime.Assert;
 
 import de.ralfebert.rcputils.types.DateHelper;
 
+/**
+ * RandomData generates random values. This is helpful for generating test data
+ * for prototypes and test cases.
+ * 
+ * @author Ralf Ebert <info@ralfebert.de>
+ */
 public class RandomData {
 
 	private int seed;

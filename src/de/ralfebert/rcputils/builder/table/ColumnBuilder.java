@@ -14,8 +14,16 @@ import de.ralfebert.rcputils.properties.IValue;
 import de.ralfebert.rcputils.properties.IValueFormatter;
 import de.ralfebert.rcputils.properties.PropertyCellLabelProvider;
 import de.ralfebert.rcputils.properties.PropertyEditingSupport;
-import de.ralfebert.rcputils.properties.internal.PropertyValue;
+import de.ralfebert.rcputils.properties.PropertyValue;
 
+/**
+ * ColumnBuilder is responsible to build a column for {@link TableViewerBuilder}
+ * Methods are chainable so you can construct table columns in a single line.
+ * After customizing the column by calling methods call build() once to create
+ * the actual column.
+ * 
+ * @author Ralf Ebert <info@ralfebert.de>
+ */
 @SuppressWarnings("unchecked")
 public class ColumnBuilder {
 

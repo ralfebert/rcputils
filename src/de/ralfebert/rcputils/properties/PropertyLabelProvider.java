@@ -3,11 +3,10 @@ package de.ralfebert.rcputils.properties;
 import org.eclipse.jface.viewers.LabelProvider;
 
 import de.ralfebert.rcputils.internal.RcpUtilsPlugin;
-import de.ralfebert.rcputils.properties.internal.PropertyValue;
 
 /**
- * LabelProvider is a LabelProvider that gets labels using a bean property (can
- * be nested with ".")
+ * PropertyLabelProvider is a LabelProvider that gets labels using a nested bean
+ * property string like "company.country.name".
  * 
  * @author Ralf Ebert <info@ralfebert.de>
  */

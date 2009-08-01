@@ -5,11 +5,10 @@ import org.eclipse.jface.viewers.ViewerCell;
 
 import de.ralfebert.rcputils.builder.table.ICellFormatter;
 import de.ralfebert.rcputils.internal.RcpUtilsPlugin;
-import de.ralfebert.rcputils.properties.internal.PropertyValue;
 
 /**
  * PropertyCellLabelProvider is a CellLabelProvider that gets cell labels using
- * a bean property (can be nested with ".")
+ * a nested bean property string like "company.country.name".
  * 
  * @author Ralf Ebert <info@ralfebert.de>
  */
