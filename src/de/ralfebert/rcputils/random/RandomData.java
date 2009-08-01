@@ -135,9 +135,7 @@ public class RandomData {
 	}
 
 	public Date someDate(int fromYear, int tillYear) {
-		long from = DateHelper.getDateByDayMonthYear(1, 1, fromYear).getTime();
-		long till = DateHelper.getDateByDayMonthYear(31, 12, tillYear).getTime();
-		return new Date(someNumber(from, till));
+		return DateHelper.getDateByDayMonthYear(someNumber(1, 29), someNumber(1, 12), someNumber(fromYear, tillYear));
 	}
 
 	public boolean someBoolean() {
