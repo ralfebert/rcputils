@@ -1,7 +1,6 @@
 package de.ralfebert.rcputils.builder.table;
 
-import java.text.Format;
-
+import org.eclipse.jface.viewers.CellEditor;
 import org.eclipse.jface.viewers.CellLabelProvider;
 import org.eclipse.jface.viewers.ColumnPixelData;
 import org.eclipse.jface.viewers.ColumnWeightData;
@@ -9,26 +8,30 @@ import org.eclipse.jface.viewers.TableViewerColumn;
 import org.eclipse.jface.viewers.TextCellEditor;
 import org.eclipse.swt.SWT;
 
-import de.ralfebert.rcputils.properties.IReadableValue;
+import de.ralfebert.rcputils.builder.table.format.StringValueFormatter;
+import de.ralfebert.rcputils.builder.table.sorting.ColumnComparator;
 import de.ralfebert.rcputils.properties.IValue;
+import de.ralfebert.rcputils.properties.IValueFormatter;
 import de.ralfebert.rcputils.properties.PropertyCellLabelProvider;
 import de.ralfebert.rcputils.properties.PropertyEditingSupport;
 import de.ralfebert.rcputils.properties.internal.PropertyValue;
 
+@SuppressWarnings("unchecked")
 public class ColumnBuilder {
 
 	private final TableViewerBuilder builder;
 	private final String label;
 	private Integer widthPixel;
 	private Integer widthPercent;
-	private boolean editable = false;
+	private CellEditor editor;
 	private ICellFormatter cellFormatter;
 	private CellLabelProvider customLabelProvider;
 	private IValue valueHandler;
-	private IReadableValue valueFormatter;
+	private IValueFormatter valueFormatter;
 	private int align = SWT.LEFT;
-	private IReadableValue sortBy;
+	private IValue sortBy;
 	private boolean defaultSort;
+	private IValueFormatter editorFormat;
 
 	ColumnBuilder(TableViewerBuilder builder, String label) {
 		this.builder = builder;
@@ -49,18 +52,8 @@ public class ColumnBuilder {
 		return this;
 	}
 
-	public ColumnBuilder format(IReadableValue valueFormatter) {
+	public ColumnBuilder format(IValueFormatter valueFormatter) {
 		this.valueFormatter = valueFormatter;
-		return this;
-	}
-
-	public ColumnBuilder format(final Format format) {
-		this.valueFormatter = new IReadableValue() {
-
-			public Object getValue(Object element) {
-				return format.format(element);
-			}
-		};
 		return this;
 	}
 
@@ -85,11 +78,26 @@ public class ColumnBuilder {
 	}
 
 	public ColumnBuilder makeEditable() {
-		this.editable = true;
+		return makeEditable(new TextCellEditor(builder.getTable()));
+	}
+
+	public ColumnBuilder makeEditable(IValueFormatter valueFormatter) {
+		return makeEditable(new TextCellEditor(builder.getTable()), valueFormatter);
+	}
+
+	public ColumnBuilder makeEditable(CellEditor cellEditor) {
+		return makeEditable(cellEditor, null);
+	}
+
+	public ColumnBuilder makeEditable(CellEditor cellEditor, IValueFormatter valueFormatter) {
+		if (cellEditor.getControl().getParent() != builder.getTable())
+			throw new RuntimeException("Parent of cell editor needs to be the table!");
+		this.editor = cellEditor;
+		this.editorFormat = valueFormatter;
 		return this;
 	}
 
-	public ColumnBuilder sortBy(IReadableValue sortBy) {
+	public ColumnBuilder sortBy(IValue sortBy) {
 		this.sortBy = sortBy;
 		return this;
 	}
@@ -133,21 +141,25 @@ public class ColumnBuilder {
 			// default width if nothing is specified
 			if (widthPixel == null)
 				widthPixel = 100;
-			// TODO: trim, resizeable
 			builder.getTableLayout().setColumnData(viewerColumn.getColumn(), new ColumnPixelData(widthPixel));
 		} else {
-			// TODO: minimumWidth, resizeable
 			builder.getTableLayout().setColumnData(viewerColumn.getColumn(), new ColumnWeightData(widthPercent));
 		}
 
-		if (editable) {
+		if (editor != null) {
 			if (valueHandler == null) {
 				throw new RuntimeException(
-						"To use editable() you need to specifiy a value provider or bind the column to a property!");
+						"To use makeEditable() you need to specifiy a value provider or bind the column to a property!");
 			}
-			// TODO: cell editor
+
+			if (editorFormat == null)
+				editorFormat = valueFormatter;
+
+			if (editorFormat == null)
+				editorFormat = StringValueFormatter.INSTANCE;
+
 			viewerColumn.setEditingSupport(new PropertyEditingSupport(builder.getTableViewer(), valueHandler,
-					new TextCellEditor(builder.getTable())));
+					editorFormat, editor));
 		}
 
 		if (defaultSort) {

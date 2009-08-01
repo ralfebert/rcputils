@@ -140,4 +140,8 @@ public class RandomData {
 		return new Date(someNumber(from, till));
 	}
 
+	public boolean someBoolean() {
+		return someNumber(0, 2) == 0;
+	}
+
 }

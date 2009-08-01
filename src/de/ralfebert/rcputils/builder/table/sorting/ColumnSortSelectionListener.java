@@ -1,4 +1,4 @@
-package de.ralfebert.rcputils.builder.table;
+package de.ralfebert.rcputils.builder.table.sorting;
 
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.swt.SWT;

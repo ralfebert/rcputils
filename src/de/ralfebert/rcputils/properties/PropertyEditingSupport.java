@@ -4,6 +4,7 @@ import org.eclipse.jface.viewers.CellEditor;
 import org.eclipse.jface.viewers.ColumnViewer;
 import org.eclipse.jface.viewers.EditingSupport;
 
+import de.ralfebert.rcputils.internal.RcpUtilsPlugin;
 import de.ralfebert.rcputils.properties.internal.PropertyValue;
 
 /**
@@ -12,18 +13,22 @@ import de.ralfebert.rcputils.properties.internal.PropertyValue;
  * 
  * @author Ralf Ebert <info@ralfebert.de>
  */
+@SuppressWarnings("unchecked")
 public class PropertyEditingSupport extends EditingSupport {
 
 	private final CellEditor cellEditor;
 	private final IValue valueHandler;
+	private final IValueFormatter valueFormatter;
 
 	public PropertyEditingSupport(ColumnViewer viewer, String propertyName, CellEditor cellEditor) {
-		this(viewer, new PropertyValue(propertyName), cellEditor);
+		this(viewer, new PropertyValue(propertyName), null, cellEditor);
 	}
 
-	public PropertyEditingSupport(ColumnViewer viewer, IValue valueHandler, CellEditor cellEditor) {
+	public PropertyEditingSupport(ColumnViewer viewer, IValue valueHandler, IValueFormatter valueFormatter,
+			CellEditor cellEditor) {
 		super(viewer);
 		this.valueHandler = valueHandler;
+		this.valueFormatter = valueFormatter;
 		this.cellEditor = cellEditor;
 	}
 
@@ -39,13 +44,34 @@ public class PropertyEditingSupport extends EditingSupport {
 
 	@Override
 	protected Object getValue(Object element) {
-		return valueHandler.getValue(element);
+		try {
+			Object value = valueHandler.getValue(element);
+			if (valueFormatter != null) {
+				value = valueFormatter.format(value);
+			}
+			return value;
+		} catch (Exception e) {
+			// Exceptions are not re-thrown because EditingSupport is touchy in
+			// that regard
+			RcpUtilsPlugin.logException(e);
+			return null;
+		}
 	}
 
 	@Override
 	protected void setValue(Object element, Object value) {
-		valueHandler.setValue(element, value);
-		getViewer().refresh(element);
+		try {
+			Object parsedValue = value;
+			if (valueFormatter != null) {
+				parsedValue = valueFormatter.parse(value);
+			}
+			valueHandler.setValue(element, parsedValue);
+			getViewer().refresh();
+		} catch (Exception e) {
+			// Exceptions are not re-thrown because EditingSupport is touchy in
+			// that regard
+			RcpUtilsPlugin.logException(e);
+		}
 	}
 
 }

@@ -12,6 +12,9 @@ import org.eclipse.swt.widgets.Layout;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableColumn;
 
+import de.ralfebert.rcputils.builder.table.sorting.ColumnComparator;
+import de.ralfebert.rcputils.builder.table.sorting.ColumnSortSelectionListener;
+
 
 public class TableViewerBuilder {
 

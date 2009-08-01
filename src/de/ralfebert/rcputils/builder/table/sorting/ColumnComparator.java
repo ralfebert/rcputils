@@ -1,4 +1,4 @@
-package de.ralfebert.rcputils.builder.table;
+package de.ralfebert.rcputils.builder.table.sorting;
 
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.viewers.ViewerComparator;
@@ -6,7 +6,7 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableColumn;
 
-import de.ralfebert.rcputils.properties.IReadableValue;
+import de.ralfebert.rcputils.properties.IValue;
 
 public final class ColumnComparator extends ViewerComparator {
 
@@ -27,7 +27,7 @@ public final class ColumnComparator extends ViewerComparator {
 		if (column == null)
 			return super.compare(viewer, e1, e2);
 
-		IReadableValue sortBy = (IReadableValue) column.getData(SORT_BY);
+		IValue sortBy = (IValue) column.getData(SORT_BY);
 
 		if (sortBy == null)
 			return super.compare(viewer, e1, e2);
