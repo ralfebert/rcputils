@@ -3,6 +3,8 @@ package de.ralfebert.rcputils.builder.table.format;
 import java.text.DateFormat;
 import java.text.DecimalFormat;
 
+import org.eclipse.core.databinding.conversion.IConverter;
+
 import de.ralfebert.rcputils.properties.IValueFormatter;
 
 public class Formatter {
@@ -41,6 +43,19 @@ public class Formatter {
 
 	public static StringValueFormatter forDate(DateFormat dateFormat) {
 		return new StringValueFormatter(dateFormat);
+	}
+
+	public static IValueFormatter<Object, Object> fromConverters(final IConverter format, final IConverter parse) {
+		return new IValueFormatter<Object, Object>() {
+
+			public Object format(Object obj) {
+				return format.convert(obj);
+			}
+
+			public Object parse(Object obj) {
+				return parse.convert(obj);
+			}
+		};
 	}
 
 	public static IValueFormatter<Integer, String> forInt() {
