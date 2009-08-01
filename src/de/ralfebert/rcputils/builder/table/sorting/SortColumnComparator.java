@@ -20,9 +20,9 @@ import de.ralfebert.rcputils.properties.IValue;
  * 
  * @author Ralf Ebert <info@ralfebert.de>
  */
-public final class ColumnComparator extends ViewerComparator {
+public final class SortColumnComparator extends ViewerComparator {
 
-	public static final String SORT_BY = ColumnComparator.class.getName() + ".sortBy";
+	public static final String SORT_BY = SortColumnComparator.class.getName() + ".sortBy";
 
 	@SuppressWarnings("unchecked")
 	@Override

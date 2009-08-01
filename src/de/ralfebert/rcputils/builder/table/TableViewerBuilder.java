@@ -7,13 +7,13 @@ import org.eclipse.jface.layout.TableColumnLayout;
 import org.eclipse.jface.viewers.ArrayContentProvider;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Layout;
 import org.eclipse.swt.widgets.Table;
-import org.eclipse.swt.widgets.TableColumn;
 
-import de.ralfebert.rcputils.builder.table.sorting.ColumnComparator;
 import de.ralfebert.rcputils.builder.table.sorting.ColumnSortSelectionListener;
+import de.ralfebert.rcputils.builder.table.sorting.SortColumnComparator;
 
 /**
  * A convenient builder class for creating TableViewers with support for nested
@@ -26,46 +26,74 @@ public class TableViewerBuilder {
 
 	private final TableViewer tableViewer;
 	private final Table table;
+	private final SelectionListener sortSelectionListener;
 
-	TableViewerBuilder(TableViewer tableViewer) {
-		this.tableViewer = tableViewer;
-		this.table = tableViewer.getTable();
-
-		if (this.table.getParent().getChildren().length != 1) {
-			throw new RuntimeException(
-					"The parent composite around the table may only contain the table itself - otherweise TableColumnLayout will not work");
+	/**
+	 * Creates a new TableViewerBuilder.
+	 * 
+	 * This instantly creates a Table widget and a TableViewer. The given parent
+	 * Composite needs to be empty, because `TableColumnLayout` is used
+	 * internally.
+	 */
+	public TableViewerBuilder(Composite parent, int style) {
+		// check parent
+		if (parent.getChildren().length > 0) {
+			throw new RuntimeException("The parent composite for the table needs to be empty for TableColumnLayout.");
 		}
 
+		this.tableViewer = new TableViewer(parent, style);
+		this.table = tableViewer.getTable();
+
+		// set TableColumnLayout to table parent
 		this.table.getParent().setLayout(new TableColumnLayout());
+
+		// headers / lines visible by default
+		this.table.setHeaderVisible(true);
+		this.table.setLinesVisible(true);
+
+		// sorting
+		this.sortSelectionListener = new ColumnSortSelectionListener(this.tableViewer);
+		tableViewer.setComparator(new SortColumnComparator());
 	}
 
-	public TableViewerBuilder(Composite parent, int style) {
-		this(new TableViewer(parent, style));
-	}
-
+	/**
+	 * Creates a new TableViewerBuilder with default SWT styles.
+	 */
 	public TableViewerBuilder(Composite parent) {
-		this(new TableViewer(parent, SWT.MULTI | SWT.H_SCROLL | SWT.V_SCROLL | SWT.BORDER | SWT.FULL_SELECTION));
+		this(parent, SWT.MULTI | SWT.H_SCROLL | SWT.V_SCROLL | SWT.BORDER | SWT.FULL_SELECTION);
 	}
 
+	/**
+	 * Creates a new ColumnBuilder that can be used to configure the table
+	 * column. When you have finished configuring the column, call build() on
+	 * the ColumnBuilder to create the actual column.
+	 */
+	public ColumnBuilder createColumn(String columnHeaderText) {
+		return new ColumnBuilder(this, columnHeaderText);
+	}
+
+	/**
+	 * Sets the given collection as input object and an
+	 * {@link ArrayContentProvider} as content provider for the
+	 * {@link TableViewer}.
+	 */
+	public void setInput(Collection<?> input) {
+		tableViewer.setContentProvider(new ArrayContentProvider());
+		tableViewer.setInput(input);
+	}
+
+	/**
+	 * Returns the JFace TableViewer.
+	 */
 	public TableViewer getTableViewer() {
 		return tableViewer;
 	}
 
+	/**
+	 * Returns the SWT Table.
+	 */
 	public Table getTable() {
 		return table;
-	}
-
-	void activateSorting() {
-		TableColumn[] columns = table.getColumns();
-		for (final TableColumn column : columns) {
-			column.addSelectionListener(new ColumnSortSelectionListener(tableViewer, column));
-		}
-
-		tableViewer.setComparator(new ColumnComparator());
-	}
-
-	public ColumnBuilder createColumn(String label) {
-		return new ColumnBuilder(this, label);
 	}
 
 	TableColumnLayout getTableLayout() {
@@ -74,19 +102,8 @@ public class TableViewerBuilder {
 		return (TableColumnLayout) layout;
 	}
 
-	public TableViewer build(Collection<?> input) {
-		build();
-		tableViewer.setContentProvider(new ArrayContentProvider());
-		tableViewer.setInput(input);
-
-		return tableViewer;
-	}
-
-	public TableViewer build() {
-		table.setHeaderVisible(true);
-		table.setLinesVisible(true);
-		activateSorting();
-		return tableViewer;
+	SelectionListener getSortSelectionListener() {
+		return sortSelectionListener;
 	}
 
 }

@@ -18,15 +18,14 @@ import org.eclipse.swt.widgets.TableColumn;
 public final class ColumnSortSelectionListener extends SelectionAdapter {
 
 	private final TableViewer viewer;
-	private final TableColumn column;
 
-	public ColumnSortSelectionListener(TableViewer viewer, TableColumn column) {
+	public ColumnSortSelectionListener(TableViewer viewer) {
 		this.viewer = viewer;
-		this.column = column;
 	}
 
 	@Override
 	public void widgetSelected(SelectionEvent e) {
+		TableColumn column = (TableColumn) e.getSource();
 		Table table = column.getParent();
 		boolean alreadyActiveSortColumn = (column == table.getSortColumn());
 		if (alreadyActiveSortColumn) {
