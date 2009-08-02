@@ -54,6 +54,10 @@ public class RandomData {
 	public static final String[] COUNTRIES = new String[] { "Deutschland", "Österreich", "Schweiz", "Polen",
 			"Tschechische Republik", "Frankreich" };
 
+	public static final String UPPERCASE_CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+	public static final String LOWERCASE_CHARS = "abcdefghijklmnopqrstuvwxyz";
+	public static final String MIXED_CHARS = UPPERCASE_CHARS + LOWERCASE_CHARS;
+
 	public RandomData(int seed) {
 		super();
 		this.seed = seed;
@@ -115,6 +119,15 @@ public class RandomData {
 		Random random = new Random(seed);
 		for (int i = 1; i <= count; i++) {
 			string.append(String.valueOf(random.nextInt(10)));
+		}
+		return string.toString();
+	}
+
+	public String someCharacters(int count, String characters) {
+		StringBuilder string = new StringBuilder();
+		Random random = new Random(seed);
+		for (int i = 1; i <= count; i++) {
+			string.append(characters.charAt(random.nextInt(characters.length())));
 		}
 		return string.toString();
 	}
