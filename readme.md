@@ -2,7 +2,7 @@
 
 * JFace Viewer
 	* [TableViewerBuilder](http://www.ralfebert.de/blog/eclipsercp/tableviewerbuilder/) A convenient builder class for creating TableViewers with support for nested properties, sorting and editing
-	* ContextMenuBuilder is an utility class to create context menus for structured viewers.
+	* [ContextMenuBuilder](http://www.ralfebert.de/blog/eclipsercp/commands_context_menu/) is an utility class to create context menus for structured viewers.
 
 * JFace Data Binding
 	* ChangeTracker allows to react on changes in all model or target observables in a DataBindingContext globally. Can be used to set the dirty flag of an editor when something changes.

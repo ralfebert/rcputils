@@ -21,6 +21,7 @@ import org.eclipse.ui.menus.CommandContributionItem;
  * viewers.
  * 
  * @author Ralf Ebert
+ * @see http://www.ralfebert.de/blog/eclipsercp/commands_context_menu/
  */
 public class ContextMenuBuilder {
 
@@ -33,8 +34,7 @@ public class ContextMenuBuilder {
 	 * ".default" is set as default item for the menu and handles the
 	 * double-click in the structured viewer.
 	 */
-	public static void menuForViewer(StructuredViewer viewer, IWorkbenchPartSite site,
-			boolean defaultItemHandling) {
+	public static void menuForViewer(StructuredViewer viewer, IWorkbenchPartSite site, boolean defaultItemHandling) {
 		final Control control = viewer.getControl();
 
 		MenuManager menuManager = new MenuManager();
