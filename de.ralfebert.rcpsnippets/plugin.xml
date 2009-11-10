@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.perspectives">
+      <perspective
+            class="de.ralfebert.rcpsnippets.SnippetsPerspectiveFactory"
+            id="de.ralfebert.rcpsnippets"
+            name="RCP Snippets">
+      </perspective>
+   </extension>
+   <extension
+         point="org.eclipse.ui.views">
+      <view
+            class="de.ralfebert.rcpsnippets.snippet01tableproperties.Snippet01TableViewerBuilder"
+            id="de.ralfebert.rcpsnippets.Snippet01TableProperties"
+            name="01 TableViewerBuilder"
+            restorable="true">
+      </view>
+      <view
+            class="de.ralfebert.rcpsnippets.snippet02stocks.Snippet02Stocks"
+            id="de.ralfebert.rcpsnippets.snippet02stocks"
+            name="02 Stocks"
+            restorable="true">
+      </view>
+   </extension>
+
+</plugin>
