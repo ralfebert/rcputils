@@ -2,6 +2,15 @@
 <?eclipse version="3.4"?>
 <plugin>
    <extension
+         id="application"
+         point="org.eclipse.core.runtime.applications">
+      <application>
+         <run
+               class="de.ralfebert.rcpsnippets.application.SnippetsApplication">
+         </run>
+      </application>
+   </extension>
+   <extension
          point="org.eclipse.ui.perspectives">
       <perspective
             class="de.ralfebert.rcpsnippets.SnippetsPerspectiveFactory"
