@@ -5,8 +5,7 @@
 	* [ContextMenuBuilder](http://www.ralfebert.de/blog/eclipsercp/commands_context_menu/) is an utility class to create context menus for structured viewers.
 
 * Concurrent UIs
-    * `UIProcess` is a Job base class which allows to update the UI after the job was
-	 * completed.
+    * `UIProcess` is a Job base class which allows to update the UI after the job was completed.
 
 * JFace Data Binding
 	* ChangeTracker allows to react on changes in all model or target observables in a DataBindingContext globally. Can be used to set the dirty flag of an editor when something changes.
