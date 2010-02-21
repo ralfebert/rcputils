@@ -21,7 +21,7 @@ import org.eclipse.ui.menus.CommandContributionItem;
 import de.ralfebert.rcputils.internal.RcpUtilsPlugin;
 
 /**
- * ContextMenuBuilder is an utility class to create context menus for structured
+ * ContextMenu is an utility class to create context menus for structured
  * viewers.
  * 
  * @author Ralf Ebert
