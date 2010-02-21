@@ -34,6 +34,7 @@
 	* [ToggleHandler](http://www.ralfebert.de/blog/eclipsercp/togglehandler/) Handler base class for style="toggle" command contributions.
 
 	
-License:
+## License
+
 * Eclipse Public License - v1.0
 * http://www.eclipse.org/legal/epl-v10.html
