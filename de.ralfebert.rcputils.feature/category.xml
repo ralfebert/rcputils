@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+   <feature url="features/de.ralfebert.rcputils.feature_1.0.0.qualifier.jar" id="de.ralfebert.rcputils.feature" version="1.0.0.qualifier">
+      <category name="de.ralfebert.rcp"/>
+   </feature>
+   <feature url="features/org.eclipse.rcp.nl_de_3.5.0.jar" id="org.eclipse.rcp.nl_de" version="3.5.0">
+      <category name="de.ralfebert.rcp"/>
+   </feature>
+   <category-def name="de.ralfebert.rcp" label="Eclipse RCP"/>
+</site>
