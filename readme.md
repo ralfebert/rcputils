@@ -1,4 +1,10 @@
-# Utility classes for Eclipse RCP 3.5 development
+# Utility classes for Eclipse RCP development
+
+## p2 repository
+
+	http://www.ralfebert.de/projects/releases/rcputils/
+
+## Overview
 
 * JFace Viewer
 	* [TableViewerBuilder](http://www.ralfebert.de/blog/eclipsercp/tableviewerbuilder/) A convenient builder class for creating TableViewers with support for nested properties, sorting and editing
