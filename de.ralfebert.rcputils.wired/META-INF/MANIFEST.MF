@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Wired based classes
+Bundle-Name: Eclipse RCP Utils: Riena Core Wire Base classes
 Bundle-SymbolicName: de.ralfebert.rcputils.wired
 Bundle-Version: 1.0.0.qualifier
 Bundle-Vendor: Ralf Ebert
