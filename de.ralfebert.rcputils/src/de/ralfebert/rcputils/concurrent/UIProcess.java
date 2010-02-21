@@ -52,7 +52,7 @@ public abstract class UIProcess extends Job {
 	@Override
 	protected final IStatus run(IProgressMonitor monitor) {
 		runInBackground(monitor);
-		new UpdateUiJob(display, "Update UI").schedule();
+		new UpdateUiJob(display, "Update UI for " + getName()).schedule();
 		return Status.OK_STATUS;
 	}
 
