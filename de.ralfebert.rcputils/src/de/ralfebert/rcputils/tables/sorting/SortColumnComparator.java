@@ -8,7 +8,7 @@
  * Contributors:
  * Ralf Ebert - initial API and implementation
  *******************************************************************************/
-package de.ralfebert.rcputils.builder.table.sorting;
+package de.ralfebert.rcputils.tables.sorting;
 
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.viewers.ViewerComparator;
@@ -16,8 +16,8 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableColumn;
 
-import de.ralfebert.rcputils.builder.table.TableViewerBuilder;
 import de.ralfebert.rcputils.properties.IValue;
+import de.ralfebert.rcputils.tables.TableViewerBuilder;
 
 /**
  * ColumnComparator is a ViewerComparator that uses table.getSortColumn() as

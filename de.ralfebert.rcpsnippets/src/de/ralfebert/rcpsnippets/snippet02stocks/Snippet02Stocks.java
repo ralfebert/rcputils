@@ -14,9 +14,9 @@ import org.eclipse.jface.databinding.viewers.ViewerSupport;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.part.ViewPart;
 
-import de.ralfebert.rcputils.builder.table.TableViewerBuilder;
 import de.ralfebert.rcputils.databinding.Realms;
 import de.ralfebert.rcputils.random.RandomData;
+import de.ralfebert.rcputils.tables.TableViewerBuilder;
 
 public class Snippet02Stocks extends ViewPart {
 

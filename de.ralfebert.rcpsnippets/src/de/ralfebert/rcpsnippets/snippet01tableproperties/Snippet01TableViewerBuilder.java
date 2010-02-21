@@ -14,13 +14,13 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.part.ViewPart;
 
-import de.ralfebert.rcputils.builder.table.ColumnBuilder;
-import de.ralfebert.rcputils.builder.table.ICellFormatter;
-import de.ralfebert.rcputils.builder.table.TableViewerBuilder;
-import de.ralfebert.rcputils.builder.table.format.Formatter;
-import de.ralfebert.rcputils.builder.table.format.StringValueFormatter;
 import de.ralfebert.rcputils.properties.BaseValue;
 import de.ralfebert.rcputils.random.RandomData;
+import de.ralfebert.rcputils.tables.ColumnBuilder;
+import de.ralfebert.rcputils.tables.ICellFormatter;
+import de.ralfebert.rcputils.tables.TableViewerBuilder;
+import de.ralfebert.rcputils.tables.format.Formatter;
+import de.ralfebert.rcputils.tables.format.StringValueFormatter;
 
 public class Snippet01TableViewerBuilder extends ViewPart {
 

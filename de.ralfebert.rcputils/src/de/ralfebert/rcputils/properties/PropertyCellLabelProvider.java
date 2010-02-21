@@ -13,8 +13,8 @@ package de.ralfebert.rcputils.properties;
 import org.eclipse.jface.viewers.CellLabelProvider;
 import org.eclipse.jface.viewers.ViewerCell;
 
-import de.ralfebert.rcputils.builder.table.ICellFormatter;
 import de.ralfebert.rcputils.internal.RcpUtilsPlugin;
+import de.ralfebert.rcputils.tables.ICellFormatter;
 
 /**
  * PropertyCellLabelProvider is a CellLabelProvider that gets cell labels using

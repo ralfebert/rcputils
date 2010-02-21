@@ -8,7 +8,7 @@
  * Contributors:
  * Ralf Ebert - initial API and implementation
  *******************************************************************************/
-package de.ralfebert.rcputils.builder.table;
+package de.ralfebert.rcputils.tables;
 
 import org.eclipse.jface.viewers.CellEditor;
 import org.eclipse.jface.viewers.CellLabelProvider;
@@ -19,14 +19,14 @@ import org.eclipse.jface.viewers.TextCellEditor;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.TableColumn;
 
-import de.ralfebert.rcputils.builder.table.format.Formatter;
-import de.ralfebert.rcputils.builder.table.format.StringValueFormatter;
-import de.ralfebert.rcputils.builder.table.sorting.SortColumnComparator;
 import de.ralfebert.rcputils.properties.IValue;
 import de.ralfebert.rcputils.properties.IValueFormatter;
 import de.ralfebert.rcputils.properties.PropertyCellLabelProvider;
 import de.ralfebert.rcputils.properties.PropertyEditingSupport;
 import de.ralfebert.rcputils.properties.PropertyValue;
+import de.ralfebert.rcputils.tables.format.Formatter;
+import de.ralfebert.rcputils.tables.format.StringValueFormatter;
+import de.ralfebert.rcputils.tables.sorting.SortColumnComparator;
 
 /**
  * ColumnBuilder is responsible to build a column for {@link TableViewerBuilder}

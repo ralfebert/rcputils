@@ -8,7 +8,7 @@
  * Contributors:
  * Ralf Ebert - initial API and implementation
  *******************************************************************************/
-package de.ralfebert.rcputils.builder.table.format;
+package de.ralfebert.rcputils.tables.format;
 
 import java.text.DateFormat;
 import java.text.NumberFormat;

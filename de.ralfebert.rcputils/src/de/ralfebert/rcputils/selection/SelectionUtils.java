@@ -1,4 +1,4 @@
-package de.ralfebert.rcputils.jface.selection;
+package de.ralfebert.rcputils.selection;
 
 import java.util.ArrayList;
 import java.util.Collections;

@@ -8,18 +8,26 @@
  * Contributors:
  * Ralf Ebert - initial API and implementation
  *******************************************************************************/
-package de.ralfebert.rcputils.builder.table;
+package de.ralfebert.rcputils.tables.format;
 
-import org.eclipse.jface.viewers.ViewerCell;
+public class InvalidValueException extends RuntimeException {
 
-/**
- * An ICellFormatter is responsible for formatting a cell. Should be used to
- * apply additional formatting to the cell, like setting colors / images.
- * 
- * @author Ralf Ebert <info@ralfebert.de>
- */
-public interface ICellFormatter {
+	private static final long serialVersionUID = 1L;
 
-	public void formatCell(ViewerCell cell, Object value);
+	public InvalidValueException() {
+		super();
+	}
+
+	public InvalidValueException(String message, Throwable cause) {
+		super(message, cause);
+	}
+
+	public InvalidValueException(String message) {
+		super(message);
+	}
+
+	public InvalidValueException(Throwable cause) {
+		super(cause);
+	}
 
 }

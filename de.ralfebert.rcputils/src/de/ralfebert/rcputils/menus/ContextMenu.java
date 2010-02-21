@@ -1,5 +1,6 @@
-package de.ralfebert.rcputils.builder.ctxmenu;
+package de.ralfebert.rcputils.menus;
 
+import org.eclipse.core.commands.common.CommandException;
 import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.action.Separator;
 import org.eclipse.jface.viewers.DoubleClickEvent;
@@ -14,7 +15,10 @@ import org.eclipse.swt.widgets.Menu;
 import org.eclipse.swt.widgets.MenuItem;
 import org.eclipse.ui.IWorkbenchActionConstants;
 import org.eclipse.ui.IWorkbenchPartSite;
+import org.eclipse.ui.handlers.IHandlerService;
 import org.eclipse.ui.menus.CommandContributionItem;
+
+import de.ralfebert.rcputils.internal.RcpUtilsPlugin;
 
 /**
  * ContextMenuBuilder is an utility class to create context menus for structured
@@ -23,7 +27,7 @@ import org.eclipse.ui.menus.CommandContributionItem;
  * @author Ralf Ebert
  * @see http://www.ralfebert.de/blog/eclipsercp/commands_context_menu/
  */
-public class ContextMenuBuilder {
+public class ContextMenu {
 
 	/**
 	 * Creates an empty context menu for a structured viewer and registers it
@@ -34,7 +38,7 @@ public class ContextMenuBuilder {
 	 * ".default" is set as default item for the menu and handles the
 	 * double-click in the structured viewer.
 	 */
-	public static void menuForViewer(StructuredViewer viewer, IWorkbenchPartSite site, boolean defaultItemHandling) {
+	public ContextMenu(StructuredViewer viewer, final IWorkbenchPartSite site, boolean defaultItemHandling) {
 		final Control control = viewer.getControl();
 
 		MenuManager menuManager = new MenuManager();
@@ -52,15 +56,7 @@ public class ContextMenuBuilder {
 				@Override
 				public void menuShown(MenuEvent event) {
 					Menu menu = (Menu) event.widget;
-					for (MenuItem menuItem : menu.getItems()) {
-						if (menuItem.getData() instanceof CommandContributionItem) {
-							CommandContributionItem cci = (CommandContributionItem) menuItem.getData();
-							if (cci.getId() != null && cci.getId().endsWith(".default")) {
-								menu.setDefaultItem(menuItem);
-								break;
-							}
-						}
-					}
+					menu.setDefaultItem(getDefaultMenuItem(menu));
 				}
 			});
 
@@ -68,6 +64,19 @@ public class ContextMenuBuilder {
 
 				public void doubleClick(DoubleClickEvent event) {
 					Menu menu = control.getMenu();
+					menu.notifyListeners(SWT.Show, new Event());
+					MenuItem defaultItem = getDefaultMenuItem(menu);
+					if (defaultItem != null) {
+						CommandContributionItem cci = (CommandContributionItem) defaultItem.getData();
+						IHandlerService handlerService = (IHandlerService) site.getWorkbenchWindow().getWorkbench()
+								.getService(IHandlerService.class);
+						try {
+							handlerService.executeCommand(cci.getCommand(), null);
+						} catch (CommandException e) {
+							RcpUtilsPlugin.logException(e);
+						}
+					}
+
 					if (menu != null) {
 						menu.notifyListeners(SWT.Show, new Event());
 						if (menu.getDefaultItem() != null) {
@@ -77,6 +86,18 @@ public class ContextMenuBuilder {
 				}
 			});
 		}
+	}
+
+	private MenuItem getDefaultMenuItem(Menu menu) {
+		for (MenuItem menuItem : menu.getItems()) {
+			if (menuItem.getData() instanceof CommandContributionItem) {
+				CommandContributionItem cci = (CommandContributionItem) menuItem.getData();
+				if (cci.getId() != null && cci.getId().endsWith(".default")) {
+					return menuItem;
+				}
+			}
+		}
+		return null;
 	}
 
 }

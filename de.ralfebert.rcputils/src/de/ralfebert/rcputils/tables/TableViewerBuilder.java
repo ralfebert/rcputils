@@ -8,7 +8,7 @@
  * Contributors:
  * Ralf Ebert - initial API and implementation
  *******************************************************************************/
-package de.ralfebert.rcputils.builder.table;
+package de.ralfebert.rcputils.tables;
 
 import java.util.Collection;
 
@@ -22,8 +22,8 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Layout;
 import org.eclipse.swt.widgets.Table;
 
-import de.ralfebert.rcputils.builder.table.sorting.ColumnSortSelectionListener;
-import de.ralfebert.rcputils.builder.table.sorting.SortColumnComparator;
+import de.ralfebert.rcputils.tables.sorting.ColumnSortSelectionListener;
+import de.ralfebert.rcputils.tables.sorting.SortColumnComparator;
 
 /**
  * A convenient builder class for creating TableViewers with support for nested

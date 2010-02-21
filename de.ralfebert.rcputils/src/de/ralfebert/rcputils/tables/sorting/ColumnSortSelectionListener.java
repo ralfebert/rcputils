@@ -8,7 +8,7 @@
  * Contributors:
  * Ralf Ebert - initial API and implementation
  *******************************************************************************/
-package de.ralfebert.rcputils.builder.table.sorting;
+package de.ralfebert.rcputils.tables.sorting;
 
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.swt.SWT;
