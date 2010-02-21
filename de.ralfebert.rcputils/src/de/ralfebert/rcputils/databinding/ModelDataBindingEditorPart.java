@@ -36,7 +36,8 @@ import org.eclipse.ui.PartInitException;
  * 
  * @author Ralf Ebert <info@ralfebert.de>
  */
-public abstract class ModelDataBindingEditorPart<INPUT extends IEditorInput, MODEL> extends DataBindingEditorPart {
+public abstract class ModelDataBindingEditorPart<INPUT extends IEditorInput, MODEL> extends
+		DataBindingEditorPart<INPUT> {
 
 	/**
 	 * Stores the model value. This is an observable itself so we can exchange
@@ -46,37 +47,44 @@ public abstract class ModelDataBindingEditorPart<INPUT extends IEditorInput, MOD
 	private WritableValue modelValue;
 	private DataBindingContext dataBindingContext;
 
+	@Override
 	@SuppressWarnings("unchecked")
-	@Override
-	public final INPUT getEditorInput() {
-		return (INPUT) super.getEditorInput();
-	}
-
-	@Override
-	public final void init(IEditorSite site, IEditorInput input) throws PartInitException {
+	public void init(IEditorSite site, IEditorInput input) throws PartInitException {
 		super.init(site, input);
 		modelValue = new WritableValue();
-		modelValue.setValue(onLoad(input));
 	}
 
 	@Override
 	public final void doSave(IProgressMonitor monitor) {
 		dataBindingContext.updateModels();
 		modelValue.setValue(onSave(getModelObject(), monitor));
+		onReload(getModelObject());
 		dataBindingContext.updateTargets();
 		dirty.setDirty(false);
 	}
 
+	protected void onReload(MODEL modelObject) {
+
+	}
+
+	protected final void reload() {
+		if (isReady()) {
+			modelValue.setValue(onLoad(getEditorInput()));
+			onReload(getModelObject());
+		}
+	}
+
 	@SuppressWarnings("unchecked")
-	private final MODEL getModelObject() {
+	protected final MODEL getModelObject() {
 		return (MODEL) modelValue.getValue();
 	}
 
 	@Override
-	public final void createPartControl(Composite parent) {
+	protected void onAfterUi(Composite parent) {
+		super.onAfterUi(parent);
 
-		// Create UI
-		onCreatePartControl(parent);
+		// Load model
+		reload();
 
 		// Bind UI
 		dataBindingContext = new DataBindingContext();
@@ -91,7 +99,7 @@ public abstract class ModelDataBindingEditorPart<INPUT extends IEditorInput, MOD
 	/**
 	 * Implement onLoad to retrieve the model object by the editor input object.
 	 */
-	protected abstract MODEL onLoad(IEditorInput input);
+	protected abstract MODEL onLoad(INPUT input);
 
 	/**
 	 * Implement onSave to persist the model object. You can return a new model
@@ -100,14 +108,13 @@ public abstract class ModelDataBindingEditorPart<INPUT extends IEditorInput, MOD
 	protected abstract MODEL onSave(MODEL modelObject, IProgressMonitor monitor);
 
 	/**
-	 * Implement onCreatePartControl to create your UI.
-	 */
-	protected abstract void onCreatePartControl(Composite parent);
-
-	/**
 	 * Implement onBind to bind the model to the UI. Use detail values like
 	 * PojoObservables.observeDetailValue to refer to the model properties.
 	 */
 	protected abstract void onBind(DataBindingContext dataBindingContext, IObservableValue model);
+
+	protected boolean isReady() {
+		return true;
+	}
 
 }

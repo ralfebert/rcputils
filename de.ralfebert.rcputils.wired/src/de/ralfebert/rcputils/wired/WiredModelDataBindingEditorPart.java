@@ -7,16 +7,15 @@ import org.eclipse.ui.IEditorSite;
 import org.eclipse.ui.PartInitException;
 import org.osgi.framework.FrameworkUtil;
 
-import de.ralfebert.rcputils.parts.AbstractEditorPart;
+import de.ralfebert.rcputils.databinding.ModelDataBindingEditorPart;
 
-public abstract class WiredEditorPart<INPUT extends IEditorInput> extends AbstractEditorPart<INPUT> {
+public abstract class WiredModelDataBindingEditorPart<INPUT extends IEditorInput, MODEL> extends ModelDataBindingEditorPart<INPUT, MODEL> {
 
 	private WirePuller wire;
 
 	@Override
 	public void init(IEditorSite site, IEditorInput input) throws PartInitException {
-		setSite(site);
-		setInput(input);
+		super.init(site, input);
 		wire = Wire.instance(this).andStart(FrameworkUtil.getBundle(this.getClass()).getBundleContext());
 	}
 
@@ -28,5 +27,6 @@ public abstract class WiredEditorPart<INPUT extends IEditorInput> extends Abstra
 			wire = null;
 		}
 	}
+
 
 }

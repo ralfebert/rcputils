@@ -18,7 +18,8 @@ import org.eclipse.jface.databinding.swt.SWTObservables;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorSite;
 import org.eclipse.ui.PartInitException;
-import org.eclipse.ui.part.EditorPart;
+
+import de.ralfebert.rcputils.parts.AbstractEditorPart;
 
 /**
  * DataBindingEditorPart is a base class for EditorParts that want to use
@@ -27,7 +28,7 @@ import org.eclipse.ui.part.EditorPart;
  * 
  * @author Ralf Ebert <info@ralfebert.de>
  */
-public abstract class DataBindingEditorPart extends EditorPart {
+public abstract class DataBindingEditorPart<INPUT extends IEditorInput> extends AbstractEditorPart<INPUT> {
 
 	protected final DirtyFlag dirty = new DirtyFlag();
 
@@ -76,8 +77,7 @@ public abstract class DataBindingEditorPart extends EditorPart {
 
 	@Override
 	public void init(IEditorSite site, IEditorInput input) throws PartInitException {
-		setSite(site);
-		setInput(input);
+		super.init(site, input);
 		partNameObservable = new PartNameObservableValue();
 	}
 
@@ -86,18 +86,8 @@ public abstract class DataBindingEditorPart extends EditorPart {
 		return dirty.isDirty();
 	}
 
-	@Override
-	public void doSaveAs() {
-		throw new UnsupportedOperationException();
-	}
-
 	protected IObservableValue getPartNameObservable() {
 		return partNameObservable;
-	}
-
-	@Override
-	public boolean isSaveAsAllowed() {
-		return false;
 	}
 
 }
