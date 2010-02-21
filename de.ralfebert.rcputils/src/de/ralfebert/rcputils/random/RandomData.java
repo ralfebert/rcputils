@@ -143,7 +143,7 @@ public class RandomData {
 	}
 
 	public String someEmail() {
-		return someGivenName().toLowerCase() + "." + someLastName().toLowerCase() + "@localhost";
+		return someGivenName().toLowerCase() + "." + someLastName().toLowerCase() + "@example.com";
 	}
 
 	public String somePhoneNumber() {
