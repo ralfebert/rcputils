@@ -5,6 +5,7 @@ import org.eclipse.riena.core.wire.WirePuller;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorSite;
 import org.eclipse.ui.PartInitException;
+import org.osgi.framework.Bundle;
 import org.osgi.framework.FrameworkUtil;
 
 import de.ralfebert.rcputils.databinding.ModelDataBindingEditorPart;
@@ -16,7 +17,10 @@ public abstract class WiredModelDataBindingEditorPart<INPUT extends IEditorInput
 	@Override
 	public void init(IEditorSite site, IEditorInput input) throws PartInitException {
 		super.init(site, input);
-		wire = Wire.instance(this).andStart(FrameworkUtil.getBundle(this.getClass()).getBundleContext());
+		Bundle bundle = FrameworkUtil.getBundle(this.getClass());
+		if (bundle != null) {
+			wire = Wire.instance(this).andStart(bundle.getBundleContext());
+		}
 	}
 
 	@Override
