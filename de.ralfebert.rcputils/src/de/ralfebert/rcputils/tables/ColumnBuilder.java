@@ -26,7 +26,7 @@ import de.ralfebert.rcputils.properties.PropertyEditingSupport;
 import de.ralfebert.rcputils.properties.PropertyValue;
 import de.ralfebert.rcputils.tables.format.Formatter;
 import de.ralfebert.rcputils.tables.format.StringValueFormatter;
-import de.ralfebert.rcputils.tables.sorting.SortColumnComparator;
+import de.ralfebert.rcputils.tables.sort.SortColumnComparator;
 
 /**
  * ColumnBuilder is responsible to build a column for {@link TableViewerBuilder}

@@ -22,8 +22,8 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Layout;
 import org.eclipse.swt.widgets.Table;
 
-import de.ralfebert.rcputils.tables.sorting.ColumnSortSelectionListener;
-import de.ralfebert.rcputils.tables.sorting.SortColumnComparator;
+import de.ralfebert.rcputils.tables.sort.ColumnSortSelectionListener;
+import de.ralfebert.rcputils.tables.sort.SortColumnComparator;
 
 /**
  * A convenient builder class for creating TableViewers with support for nested
