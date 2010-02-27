@@ -5,20 +5,15 @@
       version="2.0.1"
       provider-name="Ralf Ebert">
 
-   <description url="http://www.example.com/description">
-      [Enter Feature Description here.]
+   <description url="http://github.com/ralfebert/rcputils">
+      Utility classes for Eclipse RCP development
    </description>
 
-   <copyright url="http://www.example.com/copyright">
-      [Enter Copyright Description here.]
-   </copyright>
-
-   <license url="http://www.example.com/license">
-      [Enter License Description here.]
+   <license url="http://www.eclipse.org/legal/epl-v10.html">
+      Eclipse Public License - v1.0
    </license>
 
    <requires>
-      <import plugin="org.apache.commons.io"/>
       <import plugin="org.eclipse.core.commands"/>
       <import plugin="org.eclipse.core.databinding"/>
       <import plugin="org.eclipse.core.databinding.observable"/>
@@ -30,7 +25,6 @@
       <import plugin="org.eclipse.swt"/>
       <import plugin="org.eclipse.ui.workbench"/>
       <import plugin="org.eclipse.osgi"/>
-      <import plugin="org.eclipse.riena.core"/>
    </requires>
 
    <plugin
