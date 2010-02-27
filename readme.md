@@ -6,12 +6,13 @@
 
 ## Overview
 
-* JFace Viewer
+* JFace Structured Viewers
 	* [TableViewerBuilder](http://www.ralfebert.de/blog/eclipsercp/tableviewerbuilder/) A convenient builder class for creating TableViewers with support for nested properties, sorting and editing
-	* [ContextMenuBuilder](http://www.ralfebert.de/blog/eclipsercp/commands_context_menu/) is an utility class to create context menus for structured viewers.
+	* [ContextMenu](http://www.ralfebert.de/blog/eclipsercp/commands_context_menu/) is an utility class to create context menus for structured viewers.
+	* [SelectionUtils.getIterable()](http://www.ralfebert.de/blog/eclipsercp/selection_iterable/): Iterate over a JFace selection in a for each loop
 
 * Concurrent UIs
-    * `UIProcess` is a Job base class which allows to update the UI after the job was completed.
+	* `UIProcess` is a Job base class which allows to update the UI after the job was completed.
 
 * JFace Data Binding
 	* ChangeTracker allows to react on changes in all model or target observables in a DataBindingContext globally. Can be used to set the dirty flag of an editor when something changes.
@@ -24,11 +25,8 @@
 	* PropertyCellLabelProvider: CellLabelProvider that gets labels using a bean property.
 	* PropertyEditingSupport: EditingSupport that gets / sets the values using a bean property.
 
-* Creating random data
-	* RandomData: RandomData generates random data. This is helpful for generating test data for prototypes and test cases.
-
-* Helpers
-	* DateHelper: Helper methods for dealing with java.util.Date
+* Mockups
+	* RandomData: RandomData generates random data. This is helpful for generating test data for UI mockup prototypes and test cases.
 
 * Commands / Handler
 	* [ToggleHandler](http://www.ralfebert.de/blog/eclipsercp/togglehandler/) Handler base class for style="toggle" command contributions.
