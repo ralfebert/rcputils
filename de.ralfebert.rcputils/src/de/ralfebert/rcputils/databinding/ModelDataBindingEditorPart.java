@@ -48,7 +48,6 @@ public abstract class ModelDataBindingEditorPart<INPUT extends IEditorInput, MOD
 	private DataBindingContext dataBindingContext;
 
 	@Override
-	@SuppressWarnings("unchecked")
 	public void init(IEditorSite site, IEditorInput input) throws PartInitException {
 		super.init(site, input);
 		modelValue = new WritableValue();
