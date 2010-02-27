@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Eclipse RCP Utils
 Bundle-SymbolicName: de.ralfebert.rcputils
-Bundle-Version: 2.0.1
+Bundle-Version: 2.0.2
 Bundle-Vendor: Ralf Ebert
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Export-Package: de.ralfebert.rcputils.concurrent,
@@ -11,6 +11,7 @@ Export-Package: de.ralfebert.rcputils.concurrent,
  de.ralfebert.rcputils.lang,
  de.ralfebert.rcputils.menus,
  de.ralfebert.rcputils.parts,
+ de.ralfebert.rcputils.porting,
  de.ralfebert.rcputils.properties,
  de.ralfebert.rcputils.random,
  de.ralfebert.rcputils.selection,

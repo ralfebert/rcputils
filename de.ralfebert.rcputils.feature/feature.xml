@@ -2,7 +2,7 @@
 <feature
       id="de.ralfebert.rcputils.feature"
       label="Eclipse RCP Utilities"
-      version="2.0.1"
+      version="2.0.2"
       provider-name="Ralf Ebert">
 
    <description url="http://github.com/ralfebert/rcputils">
