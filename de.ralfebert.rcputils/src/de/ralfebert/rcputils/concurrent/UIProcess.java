@@ -21,8 +21,8 @@ import org.eclipse.ui.progress.UIJob;
  * UIProcess is a Job base class which allows to update the UI after the job was
  * completed. Implement the "runInBackground" method with the long-running
  * operation to be executed in a background thread. Implement the
- * "runInUIThread" with the code to be executed after runInBackground has been
- * completed on the UI thread.
+ * "runInUIThread" with the code to be executed on the UI thread after
+ * runInBackground has been completed.
  * 
  * @author Ralf Ebert
  */
