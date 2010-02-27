@@ -5,7 +5,7 @@ import org.eclipse.swt.SWT;
 public class CrossPlatformSupport {
 
 	/**
-	 * Determines if the given style bits is supported on the current Platform.
+	 * Determines if the given style bit is supported on the current Platform.
 	 * Information about this is to be added as needed. Returns always true if
 	 * not known.
 	 */
