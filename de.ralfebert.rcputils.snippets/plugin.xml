@@ -28,8 +28,14 @@
       </view>
       <view
             class="de.ralfebert.rcputils.snippets.snippet02stocks.Snippet02StocksViewPart"
-            id="de.ralfebert.rcputils.snippets.snippet02stocks.Snippet02Stocks"
+            id="de.ralfebert.rcputils.snippets.Snippet02Stocks"
             name="02 Stocks"
+            restorable="true">
+      </view>
+      <view
+            class="de.ralfebert.rcputils.snippets.snippet03concurrent.Snippet03Concurrent"
+            id="de.ralfebert.rcputils.snippets.Snippet03Concurrent"
+            name="03 Concurrent"
             restorable="true">
       </view>
    </extension>
