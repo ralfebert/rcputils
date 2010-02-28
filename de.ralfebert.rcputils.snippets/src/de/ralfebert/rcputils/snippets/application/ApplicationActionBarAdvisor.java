@@ -1,4 +1,4 @@
-package de.ralfebert.rcpsnippets.application;
+package de.ralfebert.rcputils.snippets.application;
 
 import org.eclipse.jface.action.IMenuManager;
 import org.eclipse.ui.IWorkbenchWindow;

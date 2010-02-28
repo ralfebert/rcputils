@@ -6,29 +6,29 @@
          point="org.eclipse.core.runtime.applications">
       <application>
          <run
-               class="de.ralfebert.rcpsnippets.application.SnippetsApplication">
+               class="de.ralfebert.rcputils.snippets.application.SnippetsApplication">
          </run>
       </application>
    </extension>
    <extension
          point="org.eclipse.ui.perspectives">
       <perspective
-            class="de.ralfebert.rcpsnippets.SnippetsPerspectiveFactory"
-            id="de.ralfebert.rcpsnippets"
+            class="de.ralfebert.rcputils.snippets.SnippetsPerspectiveFactory"
+            id="de.ralfebert.rcputils.snippets"
             name="RCP Snippets">
       </perspective>
    </extension>
    <extension
          point="org.eclipse.ui.views">
       <view
-            class="de.ralfebert.rcpsnippets.snippet01tableproperties.Snippet01TableViewerBuilder"
-            id="de.ralfebert.rcpsnippets.Snippet01TableProperties"
+            class="de.ralfebert.rcputils.snippets.snippet01tableviewerbuilder.Snippet01TableViewerBuilder"
+            id="de.ralfebert.rcputils.snippets.Snippet01TableViewerBuilder"
             name="01 TableViewerBuilder"
             restorable="true">
       </view>
       <view
-            class="de.ralfebert.rcpsnippets.snippet02stocks.Snippet02Stocks"
-            id="de.ralfebert.rcpsnippets.snippet02stocks"
+            class="de.ralfebert.rcputils.snippets.snippet02stocks.Snippet02StocksViewPart"
+            id="de.ralfebert.rcputils.snippets.snippet02stocks.Snippet02Stocks"
             name="02 Stocks"
             restorable="true">
       </view>

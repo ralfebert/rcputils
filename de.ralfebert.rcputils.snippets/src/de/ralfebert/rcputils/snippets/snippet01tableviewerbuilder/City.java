@@ -1,4 +1,4 @@
-package de.ralfebert.rcpsnippets.snippet01tableproperties;
+package de.ralfebert.rcputils.snippets.snippet01tableviewerbuilder;
 
 import java.util.Date;
 

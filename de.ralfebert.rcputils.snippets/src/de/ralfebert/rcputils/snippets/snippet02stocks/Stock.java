@@ -1,4 +1,4 @@
-package de.ralfebert.rcpsnippets.snippet02stocks;
+package de.ralfebert.rcputils.snippets.snippet02stocks;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;

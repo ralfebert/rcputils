@@ -1,4 +1,4 @@
-package de.ralfebert.rcpsnippets.snippet02stocks;
+package de.ralfebert.rcputils.snippets.snippet02stocks;
 
 import java.math.BigDecimal;
 import java.util.Collection;
@@ -18,17 +18,20 @@ import de.ralfebert.rcputils.databinding.Realms;
 import de.ralfebert.rcputils.random.RandomData;
 import de.ralfebert.rcputils.tables.TableViewerBuilder;
 
-public class Snippet02Stocks extends ViewPart {
+public class Snippet02StocksViewPart extends ViewPart {
+
+	private TableViewerBuilder table;
 
 	@Override
 	public void createPartControl(Composite parent) {
 
-		TableViewerBuilder t = new TableViewerBuilder(parent);
+		table = new TableViewerBuilder(parent);
 
-		t.createColumn("Stock").build();
-		t.createColumn("Rate").alignRight().build();
+		table.createColumn("Stock").build();
+		table.createColumn("Rate").alignRight().build();
 
-		ViewerSupport.bind(t.getTableViewer(), createStocks(), BeanProperties.values(new String[] { "name", "rate" }));
+		ViewerSupport.bind(table.getTableViewer(), createStocks(), BeanProperties
+				.values(new String[] { "name", "rate" }));
 
 	}
 
@@ -68,8 +71,7 @@ public class Snippet02Stocks extends ViewPart {
 
 	@Override
 	public void setFocus() {
-		// TODO Auto-generated method stub
-
+		table.getTable().setFocus();
 	}
 
 }

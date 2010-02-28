@@ -1,4 +1,4 @@
-package de.ralfebert.rcpsnippets.snippet01tableproperties;
+package de.ralfebert.rcputils.snippets.snippet01tableproperties;
 
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;

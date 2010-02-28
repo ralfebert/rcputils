@@ -1,4 +1,4 @@
-package de.ralfebert.rcpsnippets.application;
+package de.ralfebert.rcputils.snippets.application;
 
 import org.eclipse.equinox.app.IApplication;
 import org.eclipse.equinox.app.IApplicationContext;
