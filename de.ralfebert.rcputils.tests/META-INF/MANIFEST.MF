@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: RCP Utils Tests
+Bundle-SymbolicName: de.ralfebert.rcputils.tests
+Bundle-Version: 1.0.0.qualifier
+Bundle-Vendor: Ralf Ebert
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Import-Package: de.ralfebert.rcputils.selection,
+ org.eclipse.jface.viewers,
+ org.hamcrest;version="1.1.0",
+ org.junit;version="4.8.1"
