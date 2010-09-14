@@ -6,35 +6,35 @@
          point="org.eclipse.core.runtime.applications">
       <application>
          <run
-               class="de.ralfebert.rcputils.snippets.application.SnippetsApplication">
+               class="org.eclipselabs.rcputils.snippets.application.SnippetsApplication">
          </run>
       </application>
    </extension>
    <extension
          point="org.eclipse.ui.perspectives">
       <perspective
-            class="de.ralfebert.rcputils.snippets.SnippetsPerspectiveFactory"
-            id="de.ralfebert.rcputils.snippets"
+            class="org.eclipselabs.rcputils.snippets.SnippetsPerspectiveFactory"
+            id="org.eclipselabs.rcputils.snippets"
             name="RCP Snippets">
       </perspective>
    </extension>
    <extension
          point="org.eclipse.ui.views">
       <view
-            class="de.ralfebert.rcputils.snippets.snippet01tableviewerbuilder.Snippet01TableViewerBuilder"
-            id="de.ralfebert.rcputils.snippets.Snippet01TableViewerBuilder"
+            class="org.eclipselabs.rcputils.snippets.snippet01tableviewerbuilder.Snippet01TableViewerBuilder"
+            id="org.eclipselabs.rcputils.snippets.Snippet01TableViewerBuilder"
             name="01 TableViewerBuilder"
             restorable="true">
       </view>
       <view
-            class="de.ralfebert.rcputils.snippets.snippet02stocks.Snippet02StocksViewPart"
-            id="de.ralfebert.rcputils.snippets.Snippet02Stocks"
+            class="org.eclipselabs.rcputils.snippets.snippet02stocks.Snippet02StocksViewPart"
+            id="org.eclipselabs.rcputils.snippets.Snippet02Stocks"
             name="02 Stocks"
             restorable="true">
       </view>
       <view
-            class="de.ralfebert.rcputils.snippets.snippet03concurrent.Snippet03Concurrent"
-            id="de.ralfebert.rcputils.snippets.Snippet03Concurrent"
+            class="org.eclipselabs.rcputils.snippets.snippet03concurrent.Snippet03Concurrent"
+            id="org.eclipselabs.rcputils.snippets.Snippet03Concurrent"
             name="03 Concurrent"
             restorable="true">
       </view>
