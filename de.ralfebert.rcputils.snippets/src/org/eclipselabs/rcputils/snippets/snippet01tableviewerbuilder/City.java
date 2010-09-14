@@ -4,17 +4,23 @@ import java.util.Date;
 
 public class City {
 
+	private final int id;
 	private String name;
 	private Date foundingDate;
 	private final CityStats stats;
 	private String neighborCity;
 
-	public City(String name, Date foundingYear, CityStats stats, String neighborCity) {
+	public City(int id, String name, Date foundingYear, CityStats stats, String neighborCity) {
 		super();
+		this.id = id;
 		this.name = name;
 		this.foundingDate = foundingYear;
 		this.stats = stats;
 		this.neighborCity = neighborCity;
+	}
+
+	public int getId() {
+		return id;
 	}
 
 	public String getName() {

@@ -24,7 +24,6 @@ import org.eclipse.swt.widgets.Table;
 import org.eclipselabs.rcputils.tables.sort.ColumnSortSelectionListener;
 import org.eclipselabs.rcputils.tables.sort.SortColumnComparator;
 
-
 /**
  * A convenient builder class for creating TableViewers with support for nested
  * properties, sorting and editing.
@@ -70,7 +69,7 @@ public class TableViewerBuilder {
 	 * Creates a new TableViewerBuilder with default SWT styles.
 	 */
 	public TableViewerBuilder(Composite parent) {
-		this(parent, SWT.MULTI | SWT.H_SCROLL | SWT.V_SCROLL | SWT.BORDER | SWT.FULL_SELECTION);
+		this(parent, SWT.VIRTUAL | SWT.MULTI | SWT.H_SCROLL | SWT.V_SCROLL | SWT.BORDER | SWT.FULL_SELECTION);
 	}
 
 	/**

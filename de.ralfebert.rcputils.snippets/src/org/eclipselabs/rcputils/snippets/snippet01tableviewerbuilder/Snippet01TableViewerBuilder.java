@@ -21,7 +21,6 @@ import org.eclipselabs.rcputils.tables.TableViewerBuilder;
 import org.eclipselabs.rcputils.tables.format.Formatter;
 import org.eclipselabs.rcputils.tables.format.StringValueFormatter;
 
-
 public class Snippet01TableViewerBuilder extends ViewPart {
 
 	private TableViewer tableViewer;
@@ -30,6 +29,11 @@ public class Snippet01TableViewerBuilder extends ViewPart {
 	public void createPartControl(Composite parent) {
 
 		TableViewerBuilder t = new TableViewerBuilder(parent);
+
+		ColumnBuilder id = t.createColumn("ID");
+		id.bindToProperty("id");
+		id.setPixelWidth(50);
+		id.build();
 
 		ColumnBuilder city = t.createColumn("City");
 		city.bindToProperty("name");
@@ -99,9 +103,9 @@ public class Snippet01TableViewerBuilder extends ViewPart {
 	private List<City> createSomeData() {
 		List<City> data = new ArrayList<City>();
 		RandomData randomData = new RandomData();
-		for (int i = 0; i < 50; i++) {
+		for (int id = 1; id <= 50000; id++) {
 			CityStats stats = new CityStats(randomData.someNumber(10000, 10000000), randomData.someNumber(100d, 800d));
-			data.add(new City(randomData.someCity(), randomData.someDate(1200, 1600), stats, randomData.someCity()));
+			data.add(new City(id, randomData.someCity(), randomData.someDate(1200, 1600), stats, randomData.someCity()));
 			randomData.newData();
 		}
 		return data;
