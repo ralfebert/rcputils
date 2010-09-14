@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?pde version="3.6"?>
+
+<target name="RCP Utils Target">
+<locations>
+<location includeAllPlatforms="true" includeMode="slicer" type="InstallableUnit">
+<unit id="org.eclipse.rcp.sdk.id" version="0.0.0"/>
+<unit id="org.eclipse.equinox.executable.feature.group" version="0.0.0"/>
+<unit id="org.junit" version="4.8.1.v4_8_1_v20100427-1100"/>
+<unit id="org.junit.source" version="4.8.1.v4_8_1_v20100427-1100"/>
+<unit id="org.hamcrest.core" version="0.0.0"/>
+<unit id="org.hamcrest.core.source" version="0.0.0"/>
+<unit id="org.eclipse.riena.core" version="0.0.0"/>
+<unit id="org.apache.commons.lang" version="0.0.0"/>
+<unit id="org.eclipse.core.variables" version="0.0.0"/>
+<unit id="org.eclipse.core.variables.source" version="0.0.0"/>
+<unit id="org.eclipse.equinox.log" version="0.0.0"/>
+<unit id="org.eclipse.equinox.log.source" version="0.0.0"/>
+<unit id="org.apache.oro" version="0.0.0"/>
+<repository location="http://download.eclipse.org/releases/helios/"/>
+</location>
+<location includeAllPlatforms="true" includeMode="slicer" type="InstallableUnit">
+<unit id="org.apache.commons.io" version="1.4.0.v20081110-1000"/>
+<unit id="org.apache.commons.io.source" version="1.4.0.v20081110-1000"/>
+<unit id="com.google.collect" version="1.0.0.v201003051000"/>
+<unit id="com.google.collect.source" version="1.0.0.v201003051000"/>
+<repository location="http://download.eclipse.org/tools/orbit/downloads/drops/S20100721061755/repository"/>
+</location>
+</locations>
+</target>
