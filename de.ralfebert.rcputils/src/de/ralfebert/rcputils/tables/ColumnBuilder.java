@@ -36,7 +36,6 @@ import de.ralfebert.rcputils.tables.sort.SortColumnComparator;
  * 
  * @author Ralf Ebert <info@ralfebert.de>
  */
-@SuppressWarnings("unchecked")
 public class ColumnBuilder {
 
 	private final TableViewerBuilder builder;
@@ -97,7 +96,8 @@ public class ColumnBuilder {
 	 * are owner-drawn), you can use a custom CellLabelProvider instead of a
 	 * value and a value formatter.
 	 */
-	public ColumnBuilder setCustomLabelProvider(CellLabelProvider customLabelProvider) {
+	public ColumnBuilder setCustomLabelProvider(
+			CellLabelProvider customLabelProvider) {
 		this.customLabelProvider = customLabelProvider;
 		return this;
 	}
@@ -139,7 +139,8 @@ public class ColumnBuilder {
 	 * without any formatting applied, to the value type needs to be String.
 	 */
 	public ColumnBuilder makeEditable() {
-		return makeEditable(new TextCellEditor(builder.getTable()), StringValueFormatter.INSTANCE);
+		return makeEditable(new TextCellEditor(builder.getTable()),
+				StringValueFormatter.INSTANCE);
 	}
 
 	/**
@@ -148,7 +149,8 @@ public class ColumnBuilder {
 	 * String and parsing it back to a new value.
 	 */
 	public ColumnBuilder makeEditable(IValueFormatter valueFormatter) {
-		return makeEditable(new TextCellEditor(builder.getTable()), valueFormatter);
+		return makeEditable(new TextCellEditor(builder.getTable()),
+				valueFormatter);
 	}
 
 	/**
@@ -164,9 +166,11 @@ public class ColumnBuilder {
 	 * valueFormatter will be responsible for formatting the value for the
 	 * editor and converting it back to a new value.
 	 */
-	public ColumnBuilder makeEditable(CellEditor cellEditor, IValueFormatter valueFormatter) {
+	public ColumnBuilder makeEditable(CellEditor cellEditor,
+			IValueFormatter valueFormatter) {
 		if (cellEditor.getControl().getParent() != builder.getTable())
-			throw new RuntimeException("Parent of cell editor needs to be the table!");
+			throw new RuntimeException(
+					"Parent of cell editor needs to be the table!");
 		this.editor = cellEditor;
 		this.editorFormat = valueFormatter;
 		return this;
@@ -194,19 +198,22 @@ public class ColumnBuilder {
 	 */
 	public TableViewerColumn build() {
 		// create column
-		TableViewerColumn viewerColumn = new TableViewerColumn(builder.getTableViewer(), align);
+		TableViewerColumn viewerColumn = new TableViewerColumn(
+				builder.getTableViewer(), align);
 		TableColumn column = viewerColumn.getColumn();
 		column.setText(columnHeaderText);
 
 		// set label provider
 		if (customLabelProvider != null) {
 			if (cellFormatter != null) {
-				throw new RuntimeException("If you specify a custom label provider, it is not allowed "
-						+ "to specify a cell formatter. You need to do the formatting in your labelprovider!");
+				throw new RuntimeException(
+						"If you specify a custom label provider, it is not allowed "
+								+ "to specify a cell formatter. You need to do the formatting in your labelprovider!");
 			}
 			viewerColumn.setLabelProvider(customLabelProvider);
 		} else {
-			viewerColumn.setLabelProvider(new PropertyCellLabelProvider(valueHandler, valueFormatter, cellFormatter));
+			viewerColumn.setLabelProvider(new PropertyCellLabelProvider(
+					valueHandler, valueFormatter, cellFormatter));
 		}
 
 		// activate column sorting
@@ -224,13 +231,16 @@ public class ColumnBuilder {
 
 		// set column layout data
 		if (widthPixel != null && widthPercent != null) {
-			throw new RuntimeException("You can specify a width in pixel OR in percent, but not both!");
+			throw new RuntimeException(
+					"You can specify a width in pixel OR in percent, but not both!");
 		}
 		if (widthPercent == null) {
 			// default width of 100px if nothing specified
-			builder.getTableLayout().setColumnData(column, new ColumnPixelData(widthPixel == null ? 100 : widthPixel));
+			builder.getTableLayout().setColumnData(column,
+					new ColumnPixelData(widthPixel == null ? 100 : widthPixel));
 		} else {
-			builder.getTableLayout().setColumnData(column, new ColumnWeightData(widthPercent));
+			builder.getTableLayout().setColumnData(column,
+					new ColumnWeightData(widthPercent));
 		}
 
 		// set editing support
@@ -240,8 +250,8 @@ public class ColumnBuilder {
 						"makeEditable() requires that the column is bound to some value using bindTo...()");
 			}
 
-			viewerColumn.setEditingSupport(new PropertyEditingSupport(builder.getTableViewer(), valueHandler,
-					editorFormat, editor));
+			viewerColumn.setEditingSupport(new PropertyEditingSupport(builder
+					.getTableViewer(), valueHandler, editorFormat, editor));
 		}
 
 		return viewerColumn;

@@ -34,7 +34,8 @@ public class PropertyCellLabelProvider extends CellLabelProvider {
 		this.cellFormatter = null;
 	}
 
-	public PropertyCellLabelProvider(IValue valueHandler, IValueFormatter valueFormatter, ICellFormatter cellFormatter) {
+	public PropertyCellLabelProvider(IValue valueHandler,
+			IValueFormatter valueFormatter, ICellFormatter cellFormatter) {
 		this.valueHandler = valueHandler;
 		this.valueFormatter = valueFormatter;
 		this.cellFormatter = cellFormatter;
