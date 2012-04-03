@@ -41,12 +41,14 @@ import org.eclipse.ui.menus.UIElement;
  * 
  * @author Ralf Ebert
  */
-public abstract class ToggleHandler extends AbstractHandler implements IElementUpdater {
+public abstract class ToggleHandler extends AbstractHandler implements
+		IElementUpdater {
 
 	private String commandId;
 
 	public final Object execute(ExecutionEvent event) throws ExecutionException {
-		ICommandService commandService = (ICommandService) PlatformUI.getWorkbench().getService(ICommandService.class);
+		ICommandService commandService = (ICommandService) PlatformUI
+				.getWorkbench().getService(ICommandService.class);
 		this.commandId = event.getCommand().getId();
 
 		// update toggled state
@@ -71,11 +73,11 @@ public abstract class ToggleHandler extends AbstractHandler implements IElementU
 	/**
 	 * Update command element with toggle state
 	 */
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings("rawtypes")
 	public void updateElement(UIElement element, Map parameters) {
 		if (this.commandId != null) {
-			ICommandService commandService = (ICommandService) PlatformUI.getWorkbench().getService(
-					ICommandService.class);
+			ICommandService commandService = (ICommandService) PlatformUI
+					.getWorkbench().getService(ICommandService.class);
 			Command command = commandService.getCommand(commandId);
 			State state = command.getState(IMenuStateIds.STYLE);
 			if (state != null)

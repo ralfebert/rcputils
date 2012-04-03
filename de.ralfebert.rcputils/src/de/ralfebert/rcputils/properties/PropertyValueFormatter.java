@@ -18,7 +18,7 @@ import de.ralfebert.rcputils.internal.RcpUtilsPlugin;
  * 
  * @author Ralf Ebert <info@ralfebert.de>
  */
-@SuppressWarnings("unchecked")
+@SuppressWarnings({ "rawtypes" })
 public class PropertyValueFormatter implements IValueFormatter {
 
 	private final IValue valueHandler;

@@ -20,7 +20,7 @@ import de.ralfebert.rcputils.internal.RcpUtilsPlugin;
  * 
  * @author Ralf Ebert <info@ralfebert.de>
  */
-@SuppressWarnings("unchecked")
+@SuppressWarnings({ "unchecked", "rawtypes" })
 public class PropertyLabelProvider extends LabelProvider {
 
 	private final IValue valueHandler;
@@ -30,7 +30,8 @@ public class PropertyLabelProvider extends LabelProvider {
 		this.valueHandler = new PropertyValue(propertyName);
 	}
 
-	public PropertyLabelProvider(IValue valueHandler, IValueFormatter valueFormatter) {
+	public PropertyLabelProvider(IValue valueHandler,
+			IValueFormatter valueFormatter) {
 		this.valueHandler = valueHandler;
 		this.valueFormatter = valueFormatter;
 	}

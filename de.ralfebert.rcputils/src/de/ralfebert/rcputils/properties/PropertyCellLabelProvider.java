@@ -22,7 +22,7 @@ import de.ralfebert.rcputils.tables.ICellFormatter;
  * 
  * @author Ralf Ebert <info@ralfebert.de>
  */
-@SuppressWarnings("unchecked")
+@SuppressWarnings({ "unchecked", "rawtypes" })
 public class PropertyCellLabelProvider extends CellLabelProvider {
 
 	private final IValue valueHandler;

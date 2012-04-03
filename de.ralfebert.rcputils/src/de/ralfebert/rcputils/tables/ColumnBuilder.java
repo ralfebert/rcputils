@@ -36,6 +36,7 @@ import de.ralfebert.rcputils.tables.sort.SortColumnComparator;
  * 
  * @author Ralf Ebert <info@ralfebert.de>
  */
+@SuppressWarnings("rawtypes")
 public class ColumnBuilder {
 
 	private final TableViewerBuilder builder;
