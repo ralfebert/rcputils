@@ -10,6 +10,7 @@
  *******************************************************************************/
 package de.ralfebert.rcputils.tables.format;
 
+import java.math.BigDecimal;
 import java.text.DateFormat;
 import java.text.NumberFormat;
 
@@ -79,7 +80,8 @@ public class Formatter {
 	 * Returns a value formatter by two existing data binding IConverterts, on
 	 * for each direction.
 	 */
-	public static IValueFormatter<Object, Object> fromConverters(final IConverter format, final IConverter parse) {
+	public static IValueFormatter<Object, Object> fromConverters(
+			final IConverter format, final IConverter parse) {
 		return new IValueFormatter<Object, Object>() {
 
 			public Object format(Object obj) {
@@ -106,6 +108,36 @@ public class Formatter {
 				return Integer.parseInt(obj);
 			}
 
+		};
+	}
+
+	public static IValueFormatter<BigDecimal, String> forBigDecimal() {
+		return new IValueFormatter<BigDecimal, String>() {
+
+			@Override
+			public BigDecimal parse(String obj) {
+				return new BigDecimal(obj.replace(".", "").replace(",", "."));
+			}
+
+			@Override
+			public String format(BigDecimal obj) {
+				return NumberFormat.getInstance().format(obj);
+			}
+		};
+	}
+
+	public static IValueFormatter<BigDecimal, String> forCurrencyBigDecimal() {
+		return new IValueFormatter<BigDecimal, String>() {
+
+			@Override
+			public BigDecimal parse(String obj) {
+				return new BigDecimal(obj.replace(".", "").replace(",", "."));
+			}
+
+			@Override
+			public String format(BigDecimal obj) {
+				return NumberFormat.getCurrencyInstance().format(obj);
+			}
 		};
 	}
 
