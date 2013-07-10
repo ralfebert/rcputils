@@ -82,6 +82,10 @@ public class TableViewerBuilder {
 		return new ColumnBuilder(this, columnHeaderText);
 	}
 
+	public ColumnBuilder createColumn(String columnHeaderText, String propertyToBind) {
+		return createColumn(columnHeaderText).bindToProperty(propertyToBind);
+	}
+
 	/**
 	 * Sets the given collection as input object and an
 	 * {@link ArrayContentProvider} as content provider for the

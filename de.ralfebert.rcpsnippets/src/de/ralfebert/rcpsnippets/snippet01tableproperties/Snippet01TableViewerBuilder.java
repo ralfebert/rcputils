@@ -45,8 +45,10 @@ public class Snippet01TableViewerBuilder extends ViewPart {
 
 			public void formatCell(ViewerCell cell, Object value) {
 				int population = (Integer) value;
-				int color = (population > 5000000) ? SWT.COLOR_RED : SWT.COLOR_BLACK;
-				cell.setForeground(cell.getControl().getDisplay().getSystemColor(color));
+				int color = (population > 5000000) ? SWT.COLOR_RED
+						: SWT.COLOR_BLACK;
+				cell.setForeground(cell.getControl().getDisplay()
+						.getSystemColor(color));
 			}
 
 		});
@@ -65,7 +67,8 @@ public class Snippet01TableViewerBuilder extends ViewPart {
 		density.bindToValue(new BaseValue<City>() {
 			@Override
 			public Object get(City city) {
-				return city.getStats().getPopulation() / city.getStats().getAreaKm2();
+				return city.getStats().getPopulation()
+						/ city.getStats().getAreaKm2();
 			}
 		});
 		density.format(Formatter.forDouble(new DecimalFormat("0")));
@@ -74,7 +77,8 @@ public class Snippet01TableViewerBuilder extends ViewPart {
 
 		ColumnBuilder foundingDate = t.createColumn("Founding date");
 		foundingDate.bindToProperty("foundingDate");
-		StringValueFormatter dateFormat = Formatter.forDate(SimpleDateFormat.getDateInstance(SimpleDateFormat.MEDIUM));
+		StringValueFormatter dateFormat = Formatter.forDate(SimpleDateFormat
+				.getDateInstance(SimpleDateFormat.MEDIUM));
 		foundingDate.format(dateFormat);
 		foundingDate.alignCenter();
 		foundingDate.setPixelWidth(100);
@@ -84,8 +88,9 @@ public class Snippet01TableViewerBuilder extends ViewPart {
 		ColumnBuilder neighborCity = t.createColumn("Neighbor city");
 		neighborCity.bindToProperty("neighborCity");
 		neighborCity.setPixelWidth(100);
-		ComboBoxViewerCellEditor cityComboEditor = new ComboBoxViewerCellEditor(t.getTable(), SWT.READ_ONLY);
-		cityComboEditor.setContenProvider(new ArrayContentProvider());
+		ComboBoxViewerCellEditor cityComboEditor = new ComboBoxViewerCellEditor(
+				t.getTable(), SWT.READ_ONLY);
+		cityComboEditor.setContentProvider(new ArrayContentProvider());
 		cityComboEditor.setLabelProvider(new LabelProvider());
 		cityComboEditor.setInput(RandomData.CITIES);
 		neighborCity.makeEditable(cityComboEditor);
@@ -100,8 +105,10 @@ public class Snippet01TableViewerBuilder extends ViewPart {
 		List<City> data = new ArrayList<City>();
 		RandomData randomData = new RandomData();
 		for (int i = 0; i < 50; i++) {
-			CityStats stats = new CityStats(randomData.someNumber(10000, 10000000), randomData.someNumber(100d, 800d));
-			data.add(new City(randomData.someCity(), randomData.someDate(1200, 1600), stats, randomData.someCity()));
+			CityStats stats = new CityStats(randomData.someNumber(10000,
+					10000000), randomData.someNumber(100d, 800d));
+			data.add(new City(randomData.someCity(), randomData.someDate(1200,
+					1600), stats, randomData.someCity()));
 			randomData.newData();
 		}
 		return data;

@@ -2,7 +2,7 @@
 <feature
       id="de.ralfebert.rcputils.feature"
       label="Eclipse RCP Utilities"
-      version="2.0.2"
+      version="2.1.1"
       provider-name="Ralf Ebert">
 
    <description url="http://github.com/ralfebert/rcputils">
@@ -29,13 +29,6 @@
 
    <plugin
          id="de.ralfebert.rcputils"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="de.ralfebert.rcputils.wired"
          download-size="0"
          install-size="0"
          version="0.0.0"

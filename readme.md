@@ -1,3 +1,5 @@
+[![Build Status](https://secure.travis-ci.org/luizkowalski/rcputils.png?branch=master)](http://travis-ci.org/luizkowalski/rcputils)
+
 # Utility classes for Eclipse RCP development
 
 ## p2 repository

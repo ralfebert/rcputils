@@ -22,19 +22,20 @@ import de.ralfebert.rcputils.internal.RcpUtilsPlugin;
  * 
  * @author Ralf Ebert <info@ralfebert.de>
  */
-@SuppressWarnings("unchecked")
+@SuppressWarnings({ "unchecked", "rawtypes" })
 public class PropertyEditingSupport extends EditingSupport {
 
 	private final CellEditor cellEditor;
 	private final IValue valueHandler;
 	private final IValueFormatter valueFormatter;
 
-	public PropertyEditingSupport(ColumnViewer viewer, String propertyName, CellEditor cellEditor) {
+	public PropertyEditingSupport(ColumnViewer viewer, String propertyName,
+			CellEditor cellEditor) {
 		this(viewer, new PropertyValue(propertyName), null, cellEditor);
 	}
 
-	public PropertyEditingSupport(ColumnViewer viewer, IValue valueHandler, IValueFormatter valueFormatter,
-			CellEditor cellEditor) {
+	public PropertyEditingSupport(ColumnViewer viewer, IValue valueHandler,
+			IValueFormatter valueFormatter, CellEditor cellEditor) {
 		super(viewer);
 		this.valueHandler = valueHandler;
 		this.valueFormatter = valueFormatter;

@@ -17,6 +17,8 @@ import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.progress.UIJob;
 
+import de.ralfebert.rcputils.internal.RcpUtilsPlugin;
+
 /**
  * UIProcess is a Job base class which allows to update the UI after the job was
  * completed. Implement the "runInBackground" method with the long-running
@@ -66,4 +68,19 @@ public abstract class UIProcess extends Job {
 	 */
 	protected abstract void runInUIThread();
 
+	/**
+	 * Ends the job and throw an error
+	 * 
+	 * @param pluginId
+	 *            The plugin's id
+	 * @param message
+	 *            the error message
+	 */
+	public void doneWithError(String pluginId, String message) {
+		done(new Status(IStatus.ERROR, pluginId, message));
+	}
+
+	public void doneWithError(String message) {
+		done(new Status(IStatus.ERROR, RcpUtilsPlugin.PLUGIN_ID, message));
+	}
 }

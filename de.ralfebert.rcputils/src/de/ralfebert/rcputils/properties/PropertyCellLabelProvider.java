@@ -22,7 +22,7 @@ import de.ralfebert.rcputils.tables.ICellFormatter;
  * 
  * @author Ralf Ebert <info@ralfebert.de>
  */
-@SuppressWarnings("unchecked")
+@SuppressWarnings({ "unchecked", "rawtypes" })
 public class PropertyCellLabelProvider extends CellLabelProvider {
 
 	private final IValue valueHandler;
@@ -34,7 +34,8 @@ public class PropertyCellLabelProvider extends CellLabelProvider {
 		this.cellFormatter = null;
 	}
 
-	public PropertyCellLabelProvider(IValue valueHandler, IValueFormatter valueFormatter, ICellFormatter cellFormatter) {
+	public PropertyCellLabelProvider(IValue valueHandler,
+			IValueFormatter valueFormatter, ICellFormatter cellFormatter) {
 		this.valueHandler = valueHandler;
 		this.valueFormatter = valueFormatter;
 		this.cellFormatter = cellFormatter;
